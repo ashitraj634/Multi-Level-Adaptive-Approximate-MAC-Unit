@@ -40,6 +40,7 @@ xrun -sv tb_adaptive_mac_exhaustive.sv \
 
 | File | Description |
 |:---|:---|
-| `sim_01.png` – `sim_05.png` | Cadence SimVision waveforms & Xcelium outputs for controller-driven non-compressor MAC |
+| `sim_01.png` | **Cadence Xcelium 24.09 / SimVision** exhaustive controller-driven MAC run (`tb_exhaustive_mac_cl.sv`): `65,536` vectors, `43,080` differing (`65.73%`), max error `136`, MAE `20.0664` |
+| `sim_02.png` – `sim_05.png` | SimVision console & waveform views for controller-driven MAC |
 | `fixed_mac_func_op.png` | Fixed-level MAC directed functional output |
-| `fixed_mac_func_op_exh.png` | Fixed-level MAC exhaustive sweep output |
+| `fixed_mac_func_op_exh.png` | **Cadence Xcelium 24.09** exhaustive fixed-level MAC run (`tb_fixed_exh_mac.sv`): `65,536` vectors, `46,080` differing (`70.31%`), max error `40`, MAE `9.7500` |

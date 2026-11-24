@@ -149,6 +149,8 @@ Three SystemVerilog testbenches are located in `verification/`, executed on **Ca
 
 Waveform captures and console outputs are preserved in `verification/sim_screenshots/`.
 
+![Cadence Xcelium Exhaustive Verification](verification/sim_screenshots/sim_01.png)
+
 ---
 
 ## 7. Synthesis Results
@@ -188,6 +190,9 @@ Key comparison across the 5 methods (on identical 25 workloads; `rtl_model.py` u
 | `M2_DualAdaptive` | Both | 101.04 | 395 | 20.0% | 59.5% | 17.8% |
 | `M4_ErrorBudget` | Both | 124.44 | 459 | 16.0% | 75.8% | 24.0% |
 | `M1_L11` (Fixed L1/L1) | Both fixed | 30.16 | 113 | 4.0% | 0.0% | 0.0% |
+
+![Method 5 Error Comparison](figures/graph2_simple_error_comparison.png)
+![Method 5 Selection Comparison](figures/graph4_method5_selection.png)
 
 ---
 
