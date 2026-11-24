@@ -10,7 +10,7 @@ import sys, os, csv
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
-OUTDIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'results')
+OUTDIR = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'results'))
 
 def load_csv(fname):
     with open(os.path.join(OUTDIR, fname)) as f:

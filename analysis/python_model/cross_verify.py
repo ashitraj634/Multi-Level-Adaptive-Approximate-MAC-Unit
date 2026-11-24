@@ -1,6 +1,6 @@
 import sys, os, csv
 
-sys.path.insert(0, r'C:\Users\rajas\.gemini\antigravity-ide\scratch\approx_mac_study\v2')
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from rtl_model import approx_multiply, approx_add, exact_mac_step
 from controllers_v2 import build_all_controllers
 from workloads import build_workloads

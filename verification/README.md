@@ -2,86 +2,44 @@
 
 ## Overview
 
-Three SystemVerilog testbenches are provided. All testbenches were executed on **Cadence Incisive** (NC-Verilog). They require a commercial HDL simulator.
+Three SystemVerilog testbenches are provided. They were run using **Cadence Xcelium** with **SimVision** (`$shm_open` / `$shm_probe` waveform capture).
 
-> **Waveform format:** `$shm_open` / `$shm_probe` — Cadence Incisive SHM database format.  
-> **Adapting for open-source simulators:** Replace `$shm_open`/`$shm_probe` with `$dumpfile`/`$dumpvars` for Icarus Verilog compatibility.
+> **Simulator note:** `$shm_open` and `$shm_probe` are Cadence-specific system tasks. To run on open-source simulators such as Icarus Verilog, replace those lines with `$dumpfile("out.vcd"); $dumpvars(0, tb_name);`.
 
 ---
 
 ## Testbench Summary
 
-### 1. `tb_adaptive_mac_exhaustive.sv`
-
-| Property | Value |
-|:---|:---|
-| **DUT** | Controller-driven adaptive MAC |
-| **Coverage** | All 65,536 (A, B) combinations |
-| **Accumulator handling** | Synchronous `clear` every 16 vectors |
-| **Error metric** | Circular error (correctly handles 16-bit wrap) |
-| **Outputs** | MAE, max absolute error, error count, error rate % |
-
-**DUT selection:** Compile with `` `define USE_COMP_WRAPPER `` to instantiate the simpler port style (no `clear`), or leave undefined to use the full `clear`-capable top level.
+### 1. `tb_adaptive_mac_exhaustive.sv` (`module tb_approx_mac_cl`)
+- **Coverage:** All **65,536 `(A, B)` pairs**, cleared (`clear = 1`) every `BATCH_SIZE = 16` vectors.
+- **Metrics:** Circular 16-bit error (`min(|x-y|, 65536 - |x-y|)`), wrong-output count/percentage, max absolute error, MAE.
+- **DUT Selection:**
+  - Default (without `` `define USE_COMP_WRAPPER ``): instantiates `approx_mac_8bit` (`rtl/top/approx_mac_wo_comp_ctrl.sv`), which has `clear`, `mac_result`, and `product_dbg`.
+  - With `` `define USE_COMP_WRAPPER ``: instantiates `approx_mac_8bit` with ports `(clk, rst_n, en, A, B, Acc, product)` — note that `approx_mac_8bit_with` (`rtl/top/approx_mac_with_comp_ctrl.sv`) matches those exact ports under the module name `approx_mac_8bit_with`.
 
 ```bash
-# Cadence Incisive — compressor MAC variant
-ncvlog -sv tb_adaptive_mac_exhaustive.sv ../rtl/top/approx_mac_with_comp_ctrl.sv \
-       ../rtl/arithmetic/approx_multiplier_comp.sv \
-       ../rtl/arithmetic/approx_adder_16bit.sv \
-       ../rtl/controller/msb_approx_controller.sv
-ncelab tb_approx_mac_cl
-ncsim tb_approx_mac_cl
+# Example Cadence Xcelium compile/run (default non-compressor controller DUT)
+xrun -sv tb_adaptive_mac_exhaustive.sv \
+     ../rtl/top/approx_mac_wo_comp_ctrl.sv \
+     ../rtl/arithmetic/approx_multiplier_wo_comp.sv \
+     ../rtl/arithmetic/approx_adder_16bit.sv \
+     ../rtl/controller/msb_approx_controller.sv
 ```
 
-### 2. `tb_fixed_mac_directed.sv`
+### 2. `tb_fixed_mac_directed.sv` (`module tb_approx_mac_8bit_fixed`)
+- **DUT:** `approx_mac_8bit_fixed` (`rtl/top/approx_mac_fixed_level.sv`, fixed Mul L2 + Add L1).
+- **Coverage:** 11 directed test cases (including `en=0` hold, synchronous `clear`, mid-operation async `rst_n`) + 300 random vectors, self-checked against an independent behavioral model.
 
-| Property | Value |
-|:---|:---|
-| **DUT** | `approx_mac_8bit_fixed` (mul L2, add L1) |
-| **Coverage** | 11 directed test cases + 300 random vectors |
-| **Checks** | Reset, clear, en=0 hold, mid-operation async reset |
-| **Self-checking** | Yes — reports PASS/FAIL per test case |
-
-Specific directed tests:
-- TC1–TC7: Accumulation sequence, en gating, hold
-- TC8: `en=0` — verify accumulator holds previous value
-- TC9: Synchronous clear — accumulator resets to 0
-- TC10a/b: Async reset asserted mid-operation — immediate effect
-- TC11: 300 random vectors against software reference model
-
-### 3. `tb_fixed_mac_exhaustive.sv`
-
-| Property | Value |
-|:---|:---|
-| **DUT** | `approx_mac_8bit_fixed` (mul L2, add L1) |
-| **Coverage** | All 65,536 (A, B) combinations |
-| **Purpose** | PPA comparison baseline — same coverage as adaptive exhaustive TB |
-| **Outputs** | MAE, max absolute error, error count, error rate % |
+### 3. `tb_fixed_mac_exhaustive.sv` (`module tb_approx_mac_fixed`)
+- **DUT:** `approx_mac_8bit_fixed`.
+- **Coverage:** All **65,536 `(A, B)` pairs**, cleared every 16 vectors, measuring circular error, MAE, and max error.
 
 ---
 
-## Simulation Screenshots
+## Simulation Screenshots (`sim_screenshots/`)
 
-Located in `sim_screenshots/`. These are captures from Cadence waveform viewer showing the non-compressor adaptive MAC (`approx_mac_wo_comp_ctrl.sv`) operating correctly.
-
-| File | Shows |
+| File | Description |
 |:---|:---|
-| `sim_01.png` | Reset and first accumulation |
-| `sim_02.png` | Accumulation sequence |
-| `sim_03.png` | Clear behaviour |
-| `sim_04.png` | Full accumulation sequence |
-| `sim_05.png` | Edge-case inputs |
-| `fixed_mac_func_op.png` | Fixed-level MAC functional output |
-| `fixed_mac_func_op_exh.png` | Exhaustive TB terminal output |
-
----
-
-## Circular Error Function
-
-Both exhaustive testbenches use a **circular distance** error metric for 16-bit values:
-
-```
-circular_error(x, y) = min(|x − y|, 65536 − |x − y|)
-```
-
-This correctly handles accumulator wrap-around at 65,535 → 0, where a linear distance of 65,534 is actually a circular distance of 2.
+| `sim_01.png` – `sim_05.png` | Cadence SimVision waveforms & Xcelium outputs for controller-driven non-compressor MAC |
+| `fixed_mac_func_op.png` | Fixed-level MAC directed functional output |
+| `fixed_mac_func_op_exh.png` | Fixed-level MAC exhaustive sweep output |

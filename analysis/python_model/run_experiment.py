@@ -14,7 +14,7 @@ from rtl_model      import approx_multiply, approx_add, exact_mac_step
 from controllers_v2 import build_all_controllers
 from workloads      import build_workloads
 
-OUTDIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'results')
+OUTDIR = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'results'))
 os.makedirs(OUTDIR, exist_ok=True)
 
 LOG_LINES = []

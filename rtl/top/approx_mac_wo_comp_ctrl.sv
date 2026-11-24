@@ -1,6 +1,6 @@
 `timescale 1ns/1ps
 
-module approx_mac_8bit_wo_comp_ctrl (
+module approx_mac_8bit (
     input logic clk, rst_n, en, clear,
     input logic [7:0] A, B,
     output logic [15:0] mac_result,
@@ -33,4 +33,5 @@ module approx_mac_8bit_wo_comp_ctrl (
     end
     assign mac_result = acc_q;
 endmodule
+
 

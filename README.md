@@ -1,12 +1,13 @@
 # Adaptive Approximate MAC Unit for Energy-Efficient Edge AI
 
-[![SystemVerilog](https://img.shields.io/badge/RTL-SystemVerilog-blue)](#)
-[![Synthesis](https://img.shields.io/badge/Synthesis-Synopsys%20DC-green)](#synthesis)
+[![RTL](https://img.shields.io/badge/RTL-SystemVerilog-blue)](#)
+[![Synthesis](https://img.shields.io/badge/Synthesis-Cadence%20Genus%2021.14-green)](#7-synthesis-results)
+[![Simulation](https://img.shields.io/badge/Simulation-Cadence%20Xcelium-orange)](#6-verification)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-An adaptive, multi-level approximate **Multiply-Accumulate (MAC)** unit implemented in SystemVerilog. The design dynamically selects the multiplier approximation level at runtime based on operand magnitude, achieving up to **26.9% power reduction** compared to an exact MAC while keeping arithmetic error below **0.5% on average**.
+An adaptive, multi-level approximate **Multiply-Accumulate (MAC)** unit implemented in SystemVerilog. The design dynamically selects the multiplier approximation level at runtime based on operand MSB magnitude while keeping the 16-bit accumulator adder exact (`L0`), targeting energy-efficient Edge AI and DSP workloads.
 
-> **Target application:** Error-tolerant workloads such as CNN inference, digital filters, and signal processing at the edge.
+> **Engineering transparency note:** This repository preserves the project's **actual** RTL, testbenches, Cadence Xcelium simulation results, Cadence Genus synthesis screenshots, presentation, reports, and supplementary Python controller study — including documented limitations (such as mixed PVT corners across preliminary synthesis runs) rather than presenting an artificially normalized story.
 
 ---
 
@@ -30,29 +31,30 @@ An adaptive, multi-level approximate **Multiply-Accumulate (MAC)** unit implemen
 
 A MAC unit computes:
 
-```
+```text
 Acc_next = Acc + (A × B)
 ```
 
-Exact arithmetic uses full carry chains and all partial products, which costs power. This project asks: **can we selectively drop low-weight partial products during multiplication and still get useful results?**
+Exact arithmetic uses full partial-product reduction and carry propagation every cycle, even when operands are large enough that losing a few least-significant bits causes negligible error. Conversely, approximating small operands or the accumulator adder can introduce large relative or carry-chain errors.
 
-The answer is yes — if the controller is smart about *when* to approximate. When input operands are large (high MSB), the dropped low-weight bits contribute negligibly to the final product relative to the dominant high-weight bits. When inputs are small, those low-weight bits matter and the controller keeps the multiplier exact.
-
-The adder (accumulator update) is **always kept exact** — approximating it corrupts carry chains across the 16-bit accumulator, compounding errors uncontrollably over long accumulation sequences.
+This project investigates **8-bit unsigned inputs (`A`, `B`)** with a **16-bit accumulator (`Acc`)**, exploring:
+- **Four approximation levels (`L0–L3`)** for both multiplier and adder.
+- **Runtime MSB-driven adaptive control** (`msb_approx_controller`) that adjusts only the multiplier level per cycle while locking the adder at `L0` (exact).
+- **Compressor-based vs. non-compressor partial-product reduction**, plus **clock gating** and **operand isolation**.
 
 ---
 
 ## 2. Architecture Overview
 
-```
+```text
         A [7:0]        B [7:0]
             │               │
             ├───────────────┤
-            │  MSB Controller│◄── Combinational
-            │  (pure logic)  │    priority encoder
+            │  MSB Controller│◄── Combinational MSB detector
+            │  (pure logic)  │    (min(msb_A, msb_B))
             └──┬────────────┘
                │
-         mul_approx_level [1:0]    add_approx_level = 0 (hardwired exact)
+         mul_approx_level [1:0]    add_approx_level = 2'b00 (Exact L0)
                │                              │
                ▼                              │
    ┌──────────────────────┐                   │
@@ -64,46 +66,44 @@ The adder (accumulator update) is **always kept exact** — approximating it cor
               │ product [15:0]                │
               ▼                              ▼
    ┌──────────────────────────────────────────┐
-   │      Exact 16-bit Adder (L0 always)      │
+   │      16-bit Adder (held at L0 Exact)     │
    └──────────────────────┬───────────────────┘
-                          │ acc_next [15:0]
+                          │ sum_comb [15:0]
                           ▼
               ┌────────────────────┐
-              │  D flip-flop (reg) │◄── clk, rst_n, en, clear
+              │  Accumulator Reg   │◄── clk, rst_n, en, clear
               └────────┬───────────┘
                        │
                    Acc [15:0]
 ```
 
-**Key design decision:** Only the multiplier is approximated. The accumulator adder is locked at Level 0 (exact ripple-carry). This eliminates carry-suppression failures that caused unacceptable error accumulation in dual-approximate configurations.
+**Why keep the adder exact (`L0`)?** Standalone Xcelium characterization (`196,608` vectors per level) showed that approximate adder `L3` reaches **86.65% error rate** and **max error 254** per step (and up to **65,534** in MAC wraparound/carry-loss scenarios), whereas the multiplier max error at `L3` is bounded (`17` for column truncation). Keeping the adder exact prevents carry-chain corruption in the accumulator.
 
 ---
 
 ## 3. Approximation Levels
 
-### Multiplier (`approx_multiplier_comp.sv`)
+### Multiplier (`rtl/arithmetic/approx_multiplier_comp.sv` and `approx_multiplier_wo_comp.sv`)
 
-Partial products `pp[i][j] = A[i] & B[j]` contribute to output column `(i + j)`. Truncation zeroes the lowest-weight columns before the reduction tree.
+Partial products `pp[i][j] = A[j] & B[i]` contribute to output column `(i + j)`. Column-wise truncation forces `pp[i][j] = 0` when `(i + j) < approx_level`.
 
-| Level | Action | Max error per product | Bias |
-|:---:|:---|:---:|:---|
-| **L0** | Exact (all 64 partial products) | 0 | None |
-| **L1** | Zero column 0 (bit weight 1) | 1 | Always negative |
-| **L2** | Zero columns 0–1 (bit weights 1, 2) | 5 | Always negative |
-| **L3** | Zero columns 0–2 + MLAPC 6:3 compressor on column 5 | 17 | Negative (can be +ve with compressor) |
+| Level | Columns Removed | Compressor Behavior (`approx_multiplier_comp.sv`) | Multiplier Exhaustive Max Error | Multiplier MAE |
+|:---:|:---|:---|:---:|:---:|
+| **L0** | None (exact) | Exact 3:2 / 2:2 PPR tree | 0 | 0.000 |
+| **L1** | Column C0 | Exact 3:2 / 2:2 PPR tree | 1 | 0.250 |
+| **L2** | Columns C0–C1 | Exact 3:2 / 2:2 PPR tree | 5 | 1.250 |
+| **L3** | Columns C0–C2 | MLAPC 6:3 approx. compressor on **column 5** (`Cout = x4 \| x6`) | 17 *(pure trunc. ref.)* | 4.250 *(pure trunc. ref.)* |
 
-> **L3 compressor detail:** At Level 3, the six partial products contributing to column 5 (weight 32) are compressed using an approximate MLAPC 6:3 compressor (`Cout = x4 | x6` instead of exact majority), saving area in the reduction tree. This compressor can slightly overestimate the carry, introducing rare positive bias.
+> **Important RTL detail:** In `approx_multiplier_comp.sv`, the MLAPC 6:3 approximate compressor (Chu et al., IEEE TVLSI 2022) replaces the 6 bits of **column 5** (weight 32) at `L3`, which can overestimate carry (`Cout = x4 | x6`). See [docs/known_issues.md](docs/known_issues.md) for how this differs from the Python model's pure truncation model.
 
-### Adder (`approx_adder_16bit.sv`)
+### Adder (`rtl/arithmetic/approx_adder_16bit.sv`)
 
-| Level | XOR region (no carry) | Carry injection at boundary |
-|:---:|:---|:---|
-| **L0** | None — full ripple-carry | — |
-| **L1** | Bits [1:0] | `A[1] & B[1]` (AND-predicted) |
-| **L2** | Bits [3:0] | `A[3] & B[3]` |
-| **L3** | Bits [7:0] | `A[7] & B[7]` |
-
-> **Why adder L3 is dangerous:** Isolating the lower 8 bits from carry propagation on a 16-bit accumulator can cause ≥32,768-count errors when carries should have crossed bit 8. The adaptive controller therefore fixes the adder at L0.
+| Level | Low Bits Using XOR-Only (`A[k] ^ B[k]`) | Carry Injection to Upper Bits | Xcelium Tested Error Rate (196,608 vecs) | Max Single-Step Error |
+|:---:|:---|:---|:---:|:---:|
+| **L0** | None (exact `+`) | Exact ripple carry | 0.00% | 0 |
+| **L1** | Bits `[1:0]` | `A[1] & B[1]` (AND-predicted) | 25.00% | 2 |
+| **L2** | Bits `[3:0]` | `A[3] & B[3]` | 57.81% | 14 |
+| **L3** | Bits `[7:0]` | `A[7] & B[7]` | 86.65% | 254 |
 
 ---
 
@@ -111,167 +111,127 @@ Partial products `pp[i][j] = A[i] & B[j]` contribute to output column `(i + j)`.
 
 **Module:** `rtl/controller/msb_approx_controller.sv`
 
-The controller detects the position of the most-significant `1` bit (MSB position) in each operand using a priority loop, then selects the multiplier level based on `min(msb_A, msb_B)`:
+The controller finds the highest set bit (`msb_position`) of `A` and `B` (`-1` if zero) and uses `min(msb_A, msb_B)`:
 
-| Smaller operand's MSB position | Multiplier level | Adder level | Rationale |
+| `min(msb_A, msb_B)` | `mul_approx_level` | `add_approx_level` | Rationale |
 |:---:|:---:|:---:|:---|
-| ≥ 6 (operand ≥ 64) | **L3** | L0 | Product ≥ 4096 — dropping 3 columns costs < 0.4% |
-| ≥ 5 (operand ≥ 32) | **L2** | L0 | Product ≥ 1024 — dropping 2 columns is safe |
-| ≥ 4 (operand ≥ 16) | **L1** | L0 | Product ≥ 256 — dropping 1 column is safe |
-| < 4 or either = 0 | **L0** | L0 | Small product — exact arithmetic required |
+| `>= 6` (both `>= 64`) | **L3** | L0 | Large operands tolerate 3 truncated columns with tiny relative error |
+| `== 5` | **L2** | L0 | Medium-high operands truncate 2 columns |
+| `== 4` | **L1** | L0 | Medium operands truncate 1 column |
+| `< 4` or either operand `== 0` | **L0** | L0 | Small/zero operands stay exact |
 
-This policy runs at **L3 approximation 41.4% of cycles**, L2 for 15.0%, L1 for 7.9%, and exact L0 for 35.6% — based on the Python benchmark study across 25 representative workloads.
-
-**Controller is fully combinational** — no state, no latency, output valid the same cycle as inputs.
-
-A cleaner priority-encoder implementation is provided at `rtl/controller/msb_approx_controller_pe_variant.sv` (this variant was developed during the controller selection study; the loop-based version above was the one actually synthesized).
+An alternative priority-encoder RTL variant created during the controller exploration study is included at `rtl/controller/msb_approx_controller_pe_variant.sv`.
 
 ---
 
 ## 5. Design Variants
 
-| File | Description | Multiplier | Controller | `clear` port |
+| File | Module Name | Multiplier Used | Controller | `clear` Port |
 |:---|:---|:---|:---|:---:|
-| `rtl/top/approx_mac_with_comp_ctrl.sv` | **Final adaptive MAC** | Compressor-based (MLAPC) | MSB controller | ✓ |
-| `rtl/top/approx_mac_wo_comp.sv` | Adaptive MAC, no compressor | Behavioural `+` reduction | Via external `mul/add_level` | ✓ |
-| `rtl/top/approx_mac_wo_comp_ctrl.sv` | Non-compressor MAC + controller integrated | Non-compressor | MSB controller | ✓ |
-| `rtl/top/approx_mac_with_comp_no_clear.sv` | Compressor MAC, no `clear` port | Compressor-based | MSB controller | ✗ |
-| `rtl/top/approx_mac_fixed_level.sv` | Fixed-level baseline (mul L2, add L1) | Fixed L2 | None | ✓ |
-| `rtl/arithmetic/exact_mac_hierarchy.sv` | Golden exact reference | Exact array multiplier | None | ✓ |
+| `rtl/top/approx_mac_with_comp_ctrl.sv` | `approx_mac_8bit_with` | Compressor (`approximate_multiplier_8bit`) | `msb_approx_controller` | ✗ |
+| `rtl/top/approx_mac_wo_comp_ctrl.sv` | `approx_mac_8bit` | Non-comp (`approximate_multiplier_8bit_wo`) | `msb_approx_controller` | ✓ |
+| `rtl/top/approx_mac_wo_comp.sv` | `approx_mac_unit` | Non-comp (`approximate_multiplier_8bit_wo`) | External `mul`/`add_approx_level` | ✓ |
+| `rtl/top/approx_mac_shared_level_comp.sv` | `approx_mac_8bit_shared_comp` | Compressor (`approximate_multiplier_8bit`) | External shared `approx_level` | ✗ |
+| `rtl/top/approx_mac_fixed_level.sv` | `approx_mac_8bit_fixed` | Fixed L2 (`approx_multiplier_8bit_L2`) + Fixed L1 adder | None | ✓ |
+| `rtl/arithmetic/exact_mac_hierarchy.sv` | `exact_mac_unit` / `exact_mac_unit_compat` | Exact array multiplier + exact RCA | None | ✓ |
 
 ---
 
 ## 6. Verification
 
-Three SystemVerilog testbenches are provided in `verification/`. All were run on **Cadence Incisive** (`$shm_open` waveform format). They cannot be run without a commercial HDL simulator.
+Three SystemVerilog testbenches are located in `verification/`, executed on **Cadence Xcelium / SimVision** (`$shm_open` / `$shm_probe` waveforms):
 
-### `tb_adaptive_mac_exhaustive.sv`
-- **DUT:** Controller-driven adaptive MAC
-- **Vectors:** All 65,536 (A, B) combinations, cleared every 16 steps
-- **Checks:** Circular error (wraps correctly at 65,535→0), MAE, max absolute error, error count
-- **DUT selection:** Compile-time `` `ifdef USE_COMP_WRAPPER `` selects between port styles
+1. **`tb_adaptive_mac_exhaustive.sv`**: Sweeps all **65,536 `(A, B)` pairs** in batches of 16 cycles (`clear` between batches) and computes circular modular error against an exact 16-bit reference.
+   - Reported exhaustive controller-driven MAC metrics (PPT Slide 17): **65.73% outputs differ**, **max error = 136** (0.21% of full scale), **MAE = 20.07**.
+2. **`tb_fixed_mac_exhaustive.sv`**: Sweeps all **65,536 `(A, B)` pairs** in 16-cycle batches on `approx_mac_8bit_fixed` (Mul L2, Add L1).
+   - Reported exhaustive fixed MAC metrics (PPT Slides 21 & 27): **70.31% outputs differ**, **max error = 40**, **MAE = 9.75**.
+3. **`tb_fixed_mac_directed.sv`**: 11 directed tests (`rst_n`, `clear`, `en=0` hold, mid-operation async reset) + 300 random vectors on `approx_mac_8bit_fixed`.
 
-### `tb_fixed_mac_directed.sv`
-- **DUT:** Fixed-level MAC (mul L2, add L1)
-- **Vectors:** 11 directed test cases + 300 random
-- **Checks:** Synchronous clear, en=0 hold, async reset mid-operation, all self-checking with pass/fail
-
-### `tb_fixed_mac_exhaustive.sv`
-- **DUT:** Fixed-level MAC (mul L2, add L1)
-- **Vectors:** All 65,536 (A, B) pairs, same batching as exhaustive adaptive TB
-- **Purpose:** PPA comparison baseline — same coverage as the adaptive TB
-
-Simulation screenshots are in `verification/sim_screenshots/`.
+Waveform captures and console outputs are preserved in `verification/sim_screenshots/`.
 
 ---
 
 ## 7. Synthesis Results
 
-All synthesis performed with **Synopsys Design Compiler**. Screenshots are in `synthesis/`.
+Synthesis was performed in **Cadence Genus 21.14 (`21.14-s082_1`)** with a **10 ns clock (`10000 ps`)** and **Joules** power estimation. Report screenshots are in `synthesis/`.
 
-| Configuration | Area (µm²) | Total Power (µW) | Power vs. Exact | Timing |
-|:---|---:|---:|:---:|:---:|
-| **Exact MAC** | 625.52 | 25.41 | — (baseline) | Met |
-| Fixed-Level (mul L2, add L1) | 692.93 | 29.52 | **+16.2% ⚠️** | Met |
-| **Adaptive MAC — no compressor** | 651.17 | 21.38 | **−15.9% ✓** | Met |
-| **Adaptive MAC — with compressor + clock gating** | 704.18 | 18.58 | **−26.9% ✓✓** | Met |
+| Configuration | Synthesized Module | PVT Corner (from QOR) | Sequential Cells | Cell Area | Total Power (µW) | Power vs. Exact | Slack (ps) |
+|:---|:---|:---|:---:|---:|---:|---:|---:|
+| **Exact MAC** | `exact_mac_unit_compat` | `PVT_0P9V_125C` | 16 | 625.518 | 25.409 | Baseline | 1268.8 |
+| **Fixed-Level (Mul L2 / Add L1)** | `approx_mac_8bit_fixed` | `PVT_1P1V_0C` | 26 | 692.932 | 29.519 | +16.2% | 5181.9 |
+| **Adaptive (no compressor)** | `approx_mac_unit` | `PVT_0P9V_125C` | 16 | 651.168 | 21.380 | −15.9% | 2831.4 |
+| **Adaptive (comp + clock gating)** | `approx_mac_8bit_comp` | `PVT_1P1V_0C` | 17 *(16 FF + 1 ICG)* | 704.178 | 18.583 | −26.9% | 6916.5 |
 
-> **Why is fixed-level *larger and more power-hungry* than exact?** The fixed-level design includes the approximation level mux logic (which adds gates) but the fixed L2 multiplier still computes columns 2–14, so only modest area is saved. The adder at L1 adds no area saving. The adaptive design benefits from real partial-product elimination and the MLAPC compressor shrinks the reduction tree structurally.
-
-> **Source:** Reported from PPT slides, confirmed by synthesis screenshots in `synthesis/`. Synthesis conditions (library, PVT corner, timing constraint) are visible in the QOR screenshots.
+> **Critical caveat (also noted on PPT Slide 28):** The preliminary Genus synthesis runs were **not normalized** across one uniform PVT corner, wrapper, or flip-flop count (`0.9 V / 125 °C` vs `1.1 V / 0 °C`, and `16` vs `26` sequential instances). Moreover, `approx_mac_8bit_comp` (which used a fused compressor tree + clock gating + operand isolation) is documented in `reports/Low_Power_Technique.docx` and `synthesis/adaptive_mac_with_compressor/`, while its fused `.sv` sub-blocks (`comp_mac_tree`, `comp_adder16`) were not packaged in the archive. Re-running all variants under identical SDC, PVT corner, and activity is planned future work.
 
 ---
 
 ## 8. Python Controller Analysis
 
-A complete Python-based controller selection study is provided in `analysis/python_model/`. It models the RTL arithmetic in bit-exact Python and evaluates 5 controller strategies across 25 benchmark workloads.
+The `analysis/python_model/` directory contains a multi-workload Python comparison of **5 control strategies** across **25 named workloads** (707 MAC steps total, 26 architectures = 650 rows):
 
-**To run the full study:**
 ```bash
 cd analysis/python_model
-python run_experiment.py    # generates workload_results.csv and level_distributions.csv
-python analyze.py           # generates summary_table.csv and nondominated.csv
-python cross_verify.py      # re-runs all 26 architectures and prints the master table
+python run_experiment.py
+python analyze.py
+python cross_verify.py
 ```
 
-**Key results (26 architectures × 25 workloads = 650 data points):**
+Key comparison across the 5 methods (on identical 25 workloads; `rtl_model.py` uses pure column truncation for L3 and carry-zero XOR adder):
 
-| Controller | Avg Error | Max Spike | Exact-match workloads | Mult at L3 | Adder exact |
-|:---|:---:|:---:|:---:|:---:|:---:|
-| Exact (baseline) | 0 | 0 | 100% | 0% | 100% |
-| Fixed mul-L1, add-exact | 10.2 | 40 | 4% | 0% | 100% |
-| Fixed mul-L2, add-exact | 45.1 | 139 | 4% | 0% | 100% |
-| **Method 5 MSB (selected)** | **74.8** | **340** | **36%** | **41%** | **100%** |
-| Method 3 Threshold (dual) | 81.8 | 340 | 20% | 41% | 21% |
-| Method 5 Magnitude | 95.4 | 375 | 36% | 60% | 100% |
-| Method 2 Dual Adaptive | 101.0 | 395 | 20% | 60% | 18% |
-| Method 4 Error Budget | 124.4 | 459 | 16% | 76% | 24% |
-| Fixed mul-L3, add-exact | 147.2 | 459 | 4% | 100% | 100% |
-
-Errors are 16-bit integer distances. The average error of 74.8 on a 16-bit output (max 65,535) corresponds to **~0.44% average relative error** on typical workloads.
+| Method / Architecture | Controls | Avg Workload Error | Max Error | Exact-Match Workloads | Mult at L3 | Adder Exact (L0) |
+|:---|:---|:---:|:---:|:---:|:---:|:---:|
+| `Exact` / `Fix_M0A0` | Baseline | 0.00 | 0 | 100.0% | 0.0% | 100.0% |
+| **M5_AdaptMult_MSB** *(Selected)* | Multiplier only | **74.80** | **340** | **36.0%** | **41.4%** | **100.0%** |
+| `M3_Threshold` | Both | 81.84 | 340 | 20.0% | 41.4% | 20.8% |
+| `M5_AdaptMult_Mag` | Multiplier only | 95.44 | 375 | 36.0% | 59.5% | 100.0% |
+| `M2_DualAdaptive` | Both | 101.04 | 395 | 20.0% | 59.5% | 17.8% |
+| `M4_ErrorBudget` | Both | 124.44 | 459 | 16.0% | 75.8% | 24.0% |
+| `M1_L11` (Fixed L1/L1) | Both fixed | 30.16 | 113 | 4.0% | 0.0% | 0.0% |
 
 ---
 
 ## 9. Repository Navigation
 
-```
+```text
 adaptive-approximate-mac/
-│
 ├── rtl/
-│   ├── arithmetic/      ← Multiplier (comp & non-comp), adder, exact hierarchy
-│   ├── controller/      ← MSB adaptive controller (loop & PE variants)
-│   └── top/             ← 7 integration top-levels (all variants)
-│
+│   ├── arithmetic/        ← Multipliers, approx adder, exact MAC hierarchy
+│   ├── controller/        ← MSB adaptive controller (synthesized & PE variants)
+│   └── top/               ← Top-level MAC wrappers (adaptive, fixed, shared)
 ├── verification/
-│   ├── *.sv             ← 3 testbenches (exhaustive & directed)
-│   └── sim_screenshots/ ← Cadence waveform captures
-│
-├── synthesis/
-│   ├── exact_mac/                       ← Exact MAC PPA evidence
-│   ├── fixed_level_mac/                 ← Fixed-level PPA evidence
-│   ├── adaptive_mac_wo_compressor/      ← Adaptive no-comp PPA evidence
-│   └── adaptive_mac_with_compressor/    ← Adaptive comp + clock-gate PPA
-│
+│   ├── *.sv               ← Exhaustive & directed SystemVerilog testbenches
+│   └── sim_screenshots/   ← Xcelium / SimVision functional captures
+├── synthesis/             ← Cadence Genus QOR, area, power, timing, clk-gating PNGs
 ├── analysis/
-│   ├── python_model/    ← Bit-exact Python models + 5-method controller study
-│   └── results/         ← CSV outputs (650-row experiment, characterisation)
-│
-├── figures/             ← PNG images for documentation
-├── docs/                ← Supplementary technical Markdown documents
-├── presentation/        ← Final project PPT (preserved)
-└── reports/             ← Full report and low-power document (preserved)
+│   ├── python_model/      ← Python 5-method controller study scripts
+│   └── results/           ← Generated CSV datasets
+├── figures/               ← Summary plots from Python evaluation
+├── docs/                  ← Known issues & technical reconciliation notes
+├── presentation/          ← Approx_MAC_Final_Project.pptx (30 slides)
+└── reports/               ← Report_Approx_MAC.docx & Low_Power_Technique.docx
 ```
 
 ---
 
 ## 10. Tool Requirements
 
-| Task | Tool | Availability |
-|:---|:---|:---|
-| RTL simulation | Cadence Incisive or Questa/ModelSim | Commercial — required for testbenches |
-| Synthesis | Synopsys Design Compiler | Commercial — results as screenshots |
-| Python analysis | Python 3.8+ (stdlib only) | Free — `run_experiment.py` etc. |
-
-> No open-source simulation flow has been tested. The testbenches use `$shm_open` (Cadence-specific). Adapting for Icarus Verilog would require replacing `$shm_open`/`$shm_probe` with `$dumpfile`/`$dumpvars`.
+- **HDL Simulation:** Cadence Xcelium (uses `$shm_open` / `$shm_probe` for SimVision waveforms; replace with `$dumpfile` / `$dumpvars` for open-source simulators).
+- **Synthesis:** Cadence Genus 21.14+ (evidence preserved as report screenshots; TCL/SDC scripts are not included).
+- **Python Analysis:** Python 3.8+ (standard library only).
 
 ---
 
 ## 11. Known Issues and Limitations
 
-See `docs/known_issues.md` for full details. Brief summary:
-
-1. **Module name collision:** Two top-level files (`approx_mac_with_comp_ctrl.sv` and `approx_mac_wo_comp_ctrl.sv`) both originally defined `approx_mac_8bit` with different port lists. They are renamed in this repository.
-2. **L3 compressor bias:** At Level 3, the MLAPC compressor can produce a small positive bias (overestimated carry), unlike pure truncation which is strictly negative. This is documented and expected per the reference paper.
-3. **Adder characterisation:** Adder error bounds at L2 and L3 were sampled (not exhaustively proven). L3 adder error can reach the full 16-bit range.
-4. **No gate-level verification:** Only RTL simulation and Python modelling were performed. No formal verification or gate-level simulation was run.
-5. **Power/area comparisons are relative:** All synthesis results are from the same library and conditions but the specific standard cell library name and PVT corner are not disclosed in this repository.
+Full details are documented in [docs/known_issues.md](docs/known_issues.md):
+- Synthesis runs across configurations used non-normalized PVT corners (`0.9 V / 125 °C` vs `1.1 V / 0 °C`) and differing FF counts.
+- `rtl_model.py` in `analysis/python_model/` models pure-truncation L3 and carry-zero XOR adder (from an earlier workspace revision), not the ZIP's column-5 MLAPC compressor (`approx_multiplier_comp.sv`) or AND-predicted adder (`approx_adder_16bit.sv`).
+- No open-source RTL simulation was run in this environment; simulation evidence comes from the Cadence Xcelium runs preserved in the project deliverables.
+- No physical design (Innovus PnR), post-layout STA, or application-level CNN/image PSNR-SSIM benchmarks have been executed yet.
 
 ---
 
 ## License
 
 MIT License — see [LICENSE](LICENSE).
-
----
-
-*Project by Rajas Ashit — VLSI Design Study, 2026*
