@@ -1,0 +1,651 @@
+arch_id,method,adder_exact,wl_id,wl_desc,n_steps,n_enabled,final_exact,final_approx,code_diff,circ_dist,rel_err_pct,zero_ref,meets_1pct,step_mean_cd,step_max_cd,step_rmse,n_level_changes,ml_L0_freq,ml_L1_freq,ml_L2_freq,ml_L3_freq,al_L0_freq,al_L1_freq,al_L2_freq,al_L3_freq
+Exact,baseline_fixed,True,WL01,All-zero operands (20 steps),20,20,0,0,0,0,undefined,True,True,0.0,0,0.0,0,1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0
+Exact,baseline_fixed,True,WL02,"Very small operands [1,5], 30 steps",30,30,259,259,0,0,0.0,False,True,0.0,0,0.0,0,1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0
+Exact,baseline_fixed,True,WL03,"Boundary operands for L1 truncation (A,B in {1,2,3,4})",16,16,100,100,0,0,0.0,False,True,0.0,0,0.0,0,1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0
+Exact,baseline_fixed,True,WL04,"Medium operands [32,96], 40 steps",40,40,30434,30434,0,0,0.0,False,True,0.0,0,0.0,0,1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0
+Exact,baseline_fixed,True,WL05,"Large operands [192,255], 30 steps",30,30,37595,37595,0,0,0.0,False,True,0.0,0,0.0,0,1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0
+Exact,baseline_fixed,True,WL06,"Maximum operands (255,255), 20 steps",20,20,55316,55316,0,0,0.0,False,True,0.0,0,0.0,0,1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0
+Exact,baseline_fixed,True,WL07,"Alternating small and large operands, 16 steps",16,16,6896,6896,0,0,0.0,False,True,0.0,0,0.0,0,1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0
+Exact,baseline_fixed,True,WL08,"One large (255) and one small (2..8) operand, 20 steps",20,20,21930,21930,0,0,0.0,False,True,0.0,0,0.0,0,1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0
+Exact,baseline_fixed,True,WL09,"Operands around 127/128, 16 steps",16,16,61960,61960,0,0,0.0,False,True,0.0,0,0.0,0,1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0
+Exact,baseline_fixed,True,WL10,"Random mixed operands, 50 steps",50,50,14863,14863,0,0,0.0,False,True,0.0,0,0.0,0,1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0
+Exact,baseline_fixed,True,WL11,"Medium operands, initial_acc=32000 (near midpoint)",20,20,23977,23977,0,0,0.0,False,True,0.0,0,0.0,0,1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0
+Exact,baseline_fixed,True,WL12,"Small operands, initial_acc=49000 (near 49152)",30,30,52655,52655,0,0,0.0,False,True,0.0,0,0.0,0,1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0
+Exact,baseline_fixed,True,WL13,"Large operands, initial_acc=64000 (near 65535, wraparound risk)",10,10,23106,23106,0,0,0.0,False,True,0.0,0,0.0,0,1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0
+Exact,baseline_fixed,True,WL14,Operands that cause accumulator to wrap around 65535,10,10,60837,60837,0,0,0.0,False,True,0.0,0,0.0,0,1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0
+Exact,baseline_fixed,True,WL15,"Enable pauses (alternating en=0), 20 steps",20,13,5086,5086,0,0,0.0,False,True,0.0,0,0.0,0,1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0
+Exact,baseline_fixed,True,WL16,Reset events mid-sequence (rst at step 9 and 17),24,24,19629,19629,0,0,0.0,False,True,0.0,0,0.0,0,1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0
+Exact,baseline_fixed,True,WL17,"Long accumulation, 100 random steps",100,100,31163,31163,0,0,0.0,False,True,0.0,0,0.0,0,1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0
+Exact,baseline_fixed,True,WL18,"Error accumulation: A,B always odd (maximize truncation effect)",40,40,33760,33760,0,0,0.0,False,True,0.0,0,0.0,0,1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0
+Exact,baseline_fixed,True,WL19,"Acc near zero (initial=5), small operands [1,3]",8,8,35,35,0,0,0.0,False,True,0.0,0,0.0,0,1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0
+Exact,baseline_fixed,True,WL20,One or both operands = 0 (zero-product steps),10,10,489,489,0,0,0.0,False,True,0.0,0,0.0,0,1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0
+Exact,baseline_fixed,True,WL21,"Single step: A=7, B=7 (worst-case L3 mult error)",1,1,49,49,0,0,0.0,False,True,0.0,0,0.0,0,1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0
+Exact,baseline_fixed,True,WL22,"Products designed to expose adder XOR-carry suppression, 16 steps",16,16,964,964,0,0,0.0,False,True,0.0,0,0.0,0,1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0
+Exact,baseline_fixed,True,WL23,"Monotonic small increments, 60 steps [1,8]",60,60,1111,1111,0,0,0.0,False,True,0.0,0,0.0,0,1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0
+Exact,baseline_fixed,True,WL24,"Held-out: uniform random full-range, 80 steps",80,80,21671,21671,0,0,0.0,False,True,0.0,0,0.0,0,1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0
+Exact,baseline_fixed,True,WL25,"Adversarial adder: A=255 with B in {1,3,5,7,...}, 20 steps",20,20,36464,36464,0,0,0.0,False,True,0.0,0,0.0,0,1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0
+M1_L00,1,True,WL01,All-zero operands (20 steps),20,20,0,0,0,0,undefined,True,True,0.0,0,0.0,0,1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0
+M1_L00,1,True,WL02,"Very small operands [1,5], 30 steps",30,30,259,259,0,0,0.0,False,True,0.0,0,0.0,0,1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0
+M1_L00,1,True,WL03,"Boundary operands for L1 truncation (A,B in {1,2,3,4})",16,16,100,100,0,0,0.0,False,True,0.0,0,0.0,0,1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0
+M1_L00,1,True,WL04,"Medium operands [32,96], 40 steps",40,40,30434,30434,0,0,0.0,False,True,0.0,0,0.0,0,1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0
+M1_L00,1,True,WL05,"Large operands [192,255], 30 steps",30,30,37595,37595,0,0,0.0,False,True,0.0,0,0.0,0,1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0
+M1_L00,1,True,WL06,"Maximum operands (255,255), 20 steps",20,20,55316,55316,0,0,0.0,False,True,0.0,0,0.0,0,1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0
+M1_L00,1,True,WL07,"Alternating small and large operands, 16 steps",16,16,6896,6896,0,0,0.0,False,True,0.0,0,0.0,0,1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0
+M1_L00,1,True,WL08,"One large (255) and one small (2..8) operand, 20 steps",20,20,21930,21930,0,0,0.0,False,True,0.0,0,0.0,0,1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0
+M1_L00,1,True,WL09,"Operands around 127/128, 16 steps",16,16,61960,61960,0,0,0.0,False,True,0.0,0,0.0,0,1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0
+M1_L00,1,True,WL10,"Random mixed operands, 50 steps",50,50,14863,14863,0,0,0.0,False,True,0.0,0,0.0,0,1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0
+M1_L00,1,True,WL11,"Medium operands, initial_acc=32000 (near midpoint)",20,20,23977,23977,0,0,0.0,False,True,0.0,0,0.0,0,1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0
+M1_L00,1,True,WL12,"Small operands, initial_acc=49000 (near 49152)",30,30,52655,52655,0,0,0.0,False,True,0.0,0,0.0,0,1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0
+M1_L00,1,True,WL13,"Large operands, initial_acc=64000 (near 65535, wraparound risk)",10,10,23106,23106,0,0,0.0,False,True,0.0,0,0.0,0,1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0
+M1_L00,1,True,WL14,Operands that cause accumulator to wrap around 65535,10,10,60837,60837,0,0,0.0,False,True,0.0,0,0.0,0,1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0
+M1_L00,1,True,WL15,"Enable pauses (alternating en=0), 20 steps",20,13,5086,5086,0,0,0.0,False,True,0.0,0,0.0,0,1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0
+M1_L00,1,True,WL16,Reset events mid-sequence (rst at step 9 and 17),24,24,19629,19629,0,0,0.0,False,True,0.0,0,0.0,0,1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0
+M1_L00,1,True,WL17,"Long accumulation, 100 random steps",100,100,31163,31163,0,0,0.0,False,True,0.0,0,0.0,0,1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0
+M1_L00,1,True,WL18,"Error accumulation: A,B always odd (maximize truncation effect)",40,40,33760,33760,0,0,0.0,False,True,0.0,0,0.0,0,1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0
+M1_L00,1,True,WL19,"Acc near zero (initial=5), small operands [1,3]",8,8,35,35,0,0,0.0,False,True,0.0,0,0.0,0,1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0
+M1_L00,1,True,WL20,One or both operands = 0 (zero-product steps),10,10,489,489,0,0,0.0,False,True,0.0,0,0.0,0,1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0
+M1_L00,1,True,WL21,"Single step: A=7, B=7 (worst-case L3 mult error)",1,1,49,49,0,0,0.0,False,True,0.0,0,0.0,0,1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0
+M1_L00,1,True,WL22,"Products designed to expose adder XOR-carry suppression, 16 steps",16,16,964,964,0,0,0.0,False,True,0.0,0,0.0,0,1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0
+M1_L00,1,True,WL23,"Monotonic small increments, 60 steps [1,8]",60,60,1111,1111,0,0,0.0,False,True,0.0,0,0.0,0,1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0
+M1_L00,1,True,WL24,"Held-out: uniform random full-range, 80 steps",80,80,21671,21671,0,0,0.0,False,True,0.0,0,0.0,0,1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0
+M1_L00,1,True,WL25,"Adversarial adder: A=255 with B in {1,3,5,7,...}, 20 steps",20,20,36464,36464,0,0,0.0,False,True,0.0,0,0.0,0,1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0
+M1_L11,1,False,WL01,All-zero operands (20 steps),20,20,0,0,0,0,undefined,True,True,0.0,0,0.0,0,0.0,1.0,0.0,0.0,0.0,1.0,0.0,0.0
+M1_L11,1,False,WL02,"Very small operands [1,5], 30 steps",30,30,259,226,33,33,12.741313,False,False,14.5667,33,17.5014,0,0.0,1.0,0.0,0.0,0.0,1.0,0.0,0.0
+M1_L11,1,False,WL03,"Boundary operands for L1 truncation (A,B in {1,2,3,4})",16,16,100,84,16,16,16.0,False,False,10.5,16,11.8004,0,0.0,1.0,0.0,0.0,0.0,1.0,0.0,0.0
+M1_L11,1,False,WL04,"Medium operands [32,96], 40 steps",40,40,30434,30384,50,50,0.16429,False,True,24.75,50,28.0321,0,0.0,1.0,0.0,0.0,0.0,1.0,0.0,0.0
+M1_L11,1,False,WL05,"Large operands [192,255], 30 steps",30,30,37595,37566,29,29,0.077138,False,True,14.4,29,17.1988,0,0.0,1.0,0.0,0.0,0.0,1.0,0.0,0.0
+M1_L11,1,False,WL06,"Maximum operands (255,255), 20 steps",20,20,55316,55296,20,20,0.036156,False,True,10.5,20,11.9791,0,0.0,1.0,0.0,0.0,0.0,1.0,0.0,0.0
+M1_L11,1,False,WL07,"Alternating small and large operands, 16 steps",16,16,6896,6880,16,16,0.232019,False,True,8.6875,16,9.8584,0,0.0,1.0,0.0,0.0,0.0,1.0,0.0,0.0
+M1_L11,1,False,WL08,"One large (255) and one small (2..8) operand, 20 steps",20,20,21930,21896,34,34,0.155039,False,True,13.4,34,16.5045,0,0.0,1.0,0.0,0.0,0.0,1.0,0.0,0.0
+M1_L11,1,False,WL09,"Operands around 127/128, 16 steps",16,16,61960,61944,16,16,0.025823,False,True,6.6875,16,9.1139,0,0.0,1.0,0.0,0.0,0.0,1.0,0.0,0.0
+M1_L11,1,False,WL10,"Random mixed operands, 50 steps",50,50,14863,14810,53,53,0.35659,False,True,27.04,53,30.5011,0,0.0,1.0,0.0,0.0,0.0,1.0,0.0,0.0
+M1_L11,1,False,WL11,"Medium operands, initial_acc=32000 (near midpoint)",20,20,23977,23956,21,21,0.087584,False,True,8.5,21,9.98,0,0.0,1.0,0.0,0.0,0.0,1.0,0.0,0.0
+M1_L11,1,False,WL12,"Small operands, initial_acc=49000 (near 49152)",30,30,52655,52628,27,27,0.051277,False,True,12.1,27,15.3699,0,0.0,1.0,0.0,0.0,0.0,1.0,0.0,0.0
+M1_L11,1,False,WL13,"Large operands, initial_acc=64000 (near 65535, wraparound risk)",10,10,23106,23096,10,10,0.043279,False,True,4.1,10,4.6797,0,0.0,1.0,0.0,0.0,0.0,1.0,0.0,0.0
+M1_L11,1,False,WL14,Operands that cause accumulator to wrap around 65535,10,10,60837,60832,5,5,0.008219,False,True,1.5,5,2.3452,0,0.0,1.0,0.0,0.0,0.0,1.0,0.0,0.0
+M1_L11,1,False,WL15,"Enable pauses (alternating en=0), 20 steps",20,13,5086,5072,14,14,0.275265,False,True,6.35,14,7.5531,0,0.0,1.0,0.0,0.0,0.0,1.0,0.0,0.0
+M1_L11,1,False,WL16,Reset events mid-sequence (rst at step 9 and 17),24,24,19629,19624,5,5,0.025473,False,True,2.375,10,3.7472,0,0.0,1.0,0.0,0.0,0.0,1.0,0.0,0.0
+M1_L11,1,False,WL17,"Long accumulation, 100 random steps",100,100,31163,31050,113,113,0.36261,False,True,51.15,113,59.7614,0,0.0,1.0,0.0,0.0,0.0,1.0,0.0,0.0
+M1_L11,1,False,WL18,"Error accumulation: A,B always odd (maximize truncation effect)",40,40,33760,33680,80,80,0.236967,False,True,39.8,80,46.8583,0,0.0,1.0,0.0,0.0,0.0,1.0,0.0,0.0
+M1_L11,1,False,WL19,"Acc near zero (initial=5), small operands [1,3]",8,8,35,27,8,8,22.857143,False,False,4.75,8,5.6125,0,0.0,1.0,0.0,0.0,0.0,1.0,0.0,0.0
+M1_L11,1,False,WL20,One or both operands = 0 (zero-product steps),10,10,489,488,1,1,0.204499,False,True,0.2,1,0.4472,0,0.0,1.0,0.0,0.0,0.0,1.0,0.0,0.0
+M1_L11,1,False,WL21,"Single step: A=7, B=7 (worst-case L3 mult error)",1,1,49,48,1,1,2.040816,False,False,1.0,1,1.0,0,0.0,1.0,0.0,0.0,0.0,1.0,0.0,0.0
+M1_L11,1,False,WL22,"Products designed to expose adder XOR-carry suppression, 16 steps",16,16,964,920,44,44,4.564315,False,False,23.0,44,26.2679,0,0.0,1.0,0.0,0.0,0.0,1.0,0.0,0.0
+M1_L11,1,False,WL23,"Monotonic small increments, 60 steps [1,8]",60,60,1111,1052,59,59,5.310531,False,False,27.0,59,31.1571,0,0.0,1.0,0.0,0.0,0.0,1.0,0.0,0.0
+M1_L11,1,False,WL24,"Held-out: uniform random full-range, 80 steps",80,80,21671,21612,59,59,0.272253,False,True,28.425,59,33.7005,0,0.0,1.0,0.0,0.0,0.0,1.0,0.0,0.0
+M1_L11,1,False,WL25,"Adversarial adder: A=255 with B in {1,3,5,7,...}, 20 steps",20,20,36464,36424,40,40,0.109697,False,True,20.5,40,23.6114,0,0.0,1.0,0.0,0.0,0.0,1.0,0.0,0.0
+M1_L22,1,False,WL01,All-zero operands (20 steps),20,20,0,0,0,0,undefined,True,True,0.0,0,0.0,0,0.0,0.0,1.0,0.0,0.0,0.0,1.0,0.0
+M1_L22,1,False,WL02,"Very small operands [1,5], 30 steps",30,30,259,96,163,163,62.934363,False,False,71.3667,163,84.7555,0,0.0,0.0,1.0,0.0,0.0,0.0,1.0,0.0
+M1_L22,1,False,WL03,"Boundary operands for L1 truncation (A,B in {1,2,3,4})",16,16,100,16,84,84,84.0,False,False,32.0,84,42.3232,0,0.0,0.0,1.0,0.0,0.0,0.0,1.0,0.0
+M1_L22,1,False,WL04,"Medium operands [32,96], 40 steps",40,40,30434,30168,266,266,0.874022,False,True,128.9,266,149.1811,0,0.0,0.0,1.0,0.0,0.0,0.0,1.0,0.0
+M1_L22,1,False,WL05,"Large operands [192,255], 30 steps",30,30,37595,37376,219,219,0.582524,False,True,101.8,219,119.1394,0,0.0,0.0,1.0,0.0,0.0,0.0,1.0,0.0
+M1_L22,1,False,WL06,"Maximum operands (255,255), 20 steps",20,20,55316,54976,340,340,0.61465,False,True,172.5,340,198.7549,0,0.0,0.0,1.0,0.0,0.0,0.0,1.0,0.0
+M1_L22,1,False,WL07,"Alternating small and large operands, 16 steps",16,16,6896,6792,104,104,1.508121,False,False,47.4375,104,58.1781,0,0.0,0.0,1.0,0.0,0.0,0.0,1.0,0.0
+M1_L22,1,False,WL08,"One large (255) and one small (2..8) operand, 20 steps",20,20,21930,21696,234,234,1.067031,False,False,120.0,234,138.2592,0,0.0,0.0,1.0,0.0,0.0,0.0,1.0,0.0
+M1_L22,1,False,WL09,"Operands around 127/128, 16 steps",16,16,61960,61856,104,104,0.16785,False,True,44.6875,104,54.9392,0,0.0,0.0,1.0,0.0,0.0,0.0,1.0,0.0
+M1_L22,1,False,WL10,"Random mixed operands, 50 steps",50,50,14863,14512,351,351,2.361569,False,False,175.68,351,199.6397,0,0.0,0.0,1.0,0.0,0.0,0.0,1.0,0.0
+M1_L22,1,False,WL11,"Medium operands, initial_acc=32000 (near midpoint)",20,20,23977,23856,121,121,0.50465,False,True,50.2,121,61.265,0,0.0,0.0,1.0,0.0,0.0,0.0,1.0,0.0
+M1_L22,1,False,WL12,"Small operands, initial_acc=49000 (near 49152)",30,30,52655,52460,195,195,0.370335,False,True,106.5,195,123.7852,0,0.0,0.0,1.0,0.0,0.0,0.0,1.0,0.0
+M1_L22,1,False,WL13,"Large operands, initial_acc=64000 (near 65535, wraparound risk)",10,10,23106,23020,86,86,0.372198,False,True,45.3,86,52.3746,0,0.0,0.0,1.0,0.0,0.0,0.0,1.0,0.0
+M1_L22,1,False,WL14,Operands that cause accumulator to wrap around 65535,10,10,60837,60764,73,73,0.119993,False,True,21.9,73,35.5739,0,0.0,0.0,1.0,0.0,0.0,0.0,1.0,0.0
+M1_L22,1,False,WL15,"Enable pauses (alternating en=0), 20 steps",20,13,5086,5016,70,70,1.376327,False,False,31.15,70,40.6356,0,0.0,0.0,1.0,0.0,0.0,0.0,1.0,0.0
+M1_L22,1,False,WL16,Reset events mid-sequence (rst at step 9 and 17),24,24,19629,19572,57,57,0.290387,False,True,22.9583,57,28.3056,0,0.0,0.0,1.0,0.0,0.0,0.0,1.0,0.0
+M1_L22,1,False,WL17,"Long accumulation, 100 random steps",100,100,31163,30472,691,691,2.217373,False,False,1014.19,65382,6550.7511,0,0.0,0.0,1.0,0.0,0.0,0.0,1.0,0.0
+M1_L22,1,False,WL18,"Error accumulation: A,B always odd (maximize truncation effect)",40,40,33760,33452,308,308,0.912322,False,True,145.65,308,172.3891,0,0.0,0.0,1.0,0.0,0.0,0.0,1.0,0.0
+M1_L22,1,False,WL19,"Acc near zero (initial=5), small operands [1,3]",8,8,35,5,30,30,85.714286,False,False,16.75,30,20.0749,0,0.0,0.0,1.0,0.0,0.0,0.0,1.0,0.0
+M1_L22,1,False,WL20,One or both operands = 0 (zero-product steps),10,10,489,468,21,21,4.294479,False,False,4.2,21,9.3915,0,0.0,0.0,1.0,0.0,0.0,0.0,1.0,0.0
+M1_L22,1,False,WL21,"Single step: A=7, B=7 (worst-case L3 mult error)",1,1,49,44,5,5,10.204082,False,False,5.0,5,5.0,0,0.0,0.0,1.0,0.0,0.0,0.0,1.0,0.0
+M1_L22,1,False,WL22,"Products designed to expose adder XOR-carry suppression, 16 steps",16,16,964,800,164,164,17.012448,False,False,80.875,164,93.6283,0,0.0,0.0,1.0,0.0,0.0,0.0,1.0,0.0
+M1_L22,1,False,WL23,"Monotonic small increments, 60 steps [1,8]",60,60,1111,704,407,407,36.633663,False,False,198.7,407,230.7634,0,0.0,0.0,1.0,0.0,0.0,0.0,1.0,0.0
+M1_L22,1,False,WL24,"Held-out: uniform random full-range, 80 steps",80,80,21671,21140,531,531,2.450279,False,False,251.05,531,293.2717,0,0.0,0.0,1.0,0.0,0.0,0.0,1.0,0.0
+M1_L22,1,False,WL25,"Adversarial adder: A=255 with B in {1,3,5,7,...}, 20 steps",20,20,36464,36264,200,200,0.548486,False,True,100.3,200,116.0366,0,0.0,0.0,1.0,0.0,0.0,0.0,1.0,0.0
+M1_L33,1,False,WL01,All-zero operands (20 steps),20,20,0,0,0,0,undefined,True,True,0.0,0,0.0,0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,1.0
+M1_L33,1,False,WL02,"Very small operands [1,5], 30 steps",30,30,259,0,259,259,100.0,False,False,107.7667,259,127.9355,0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,1.0
+M1_L33,1,False,WL03,"Boundary operands for L1 truncation (A,B in {1,2,3,4})",16,16,100,16,84,84,84.0,False,False,34.0,84,43.735,0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,1.0
+M1_L33,1,False,WL04,"Medium operands [32,96], 40 steps",40,40,30434,26256,4178,4178,13.728067,False,False,3586.35,61903,10074.8503,0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,1.0
+M1_L33,1,False,WL05,"Large operands [192,255], 30 steps",30,30,37595,34416,3179,3179,8.455912,False,False,5541.0667,64342,16585.1466,0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,1.0
+M1_L33,1,False,WL06,"Maximum operands (255,255), 20 steps",20,20,55316,50176,5140,5140,9.292067,False,False,2578.5,5140,2981.6156,0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,1.0
+M1_L33,1,False,WL07,"Alternating small and large operands, 16 steps",16,16,6896,5592,1304,1304,18.909513,False,False,647.4375,1304,794.6699,0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,1.0
+M1_L33,1,False,WL08,"One large (255) and one small (2..8) operand, 20 steps",20,20,21930,16904,5026,5026,22.918377,False,False,2519.2,5026,2914.1716,0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,1.0
+M1_L33,1,False,WL09,"Operands around 127/128, 16 steps",16,16,61960,60112,1848,1848,2.982569,False,False,887.4375,1848,1072.3688,0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,1.0
+M1_L33,1,False,WL10,"Random mixed operands, 50 steps",50,50,14863,7912,6951,6951,46.76714,False,False,7309.56,65153,16170.2862,0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,1.0
+M1_L33,1,False,WL11,"Medium operands, initial_acc=32000 (near midpoint)",20,20,23977,21992,1985,1985,8.278767,False,False,4067.9,64309,14420.9724,0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,1.0
+M1_L33,1,False,WL12,"Small operands, initial_acc=49000 (near 49152)",30,30,52655,50656,1999,1999,3.796411,False,False,1260.1,1999,1384.1686,0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,1.0
+M1_L33,1,False,WL13,"Large operands, initial_acc=64000 (near 65535, wraparound risk)",10,10,23106,22216,890,890,3.851813,False,False,464.1,890,549.436,0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,1.0
+M1_L33,1,False,WL14,Operands that cause accumulator to wrap around 65535,10,10,60837,59344,1493,1493,2.454099,False,False,639.9,1493,807.1653,0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,1.0
+M1_L33,1,False,WL15,"Enable pauses (alternating en=0), 20 steps",20,13,5086,3280,1806,1806,35.509241,False,False,4048.75,63756,14292.6255,0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,1.0
+M1_L33,1,False,WL16,Reset events mid-sequence (rst at step 9 and 17),24,24,19629,18248,1381,1381,7.035509,False,False,593.4583,1381,704.9467,0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,1.0
+M1_L33,1,False,WL17,"Long accumulation, 100 random steps",100,100,31163,18496,12667,12667,40.647563,False,False,11132.69,63714,19499.1239,0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,1.0
+M1_L33,1,False,WL18,"Error accumulation: A,B always odd (maximize truncation effect)",40,40,33760,29064,4696,4696,13.909953,False,False,3864.25,61518,10100.1001,0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,1.0
+M1_L33,1,False,WL19,"Acc near zero (initial=5), small operands [1,3]",8,8,35,5,30,30,85.714286,False,False,14.75,30,18.0831,0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,1.0
+M1_L33,1,False,WL20,One or both operands = 0 (zero-product steps),10,10,489,24,465,465,95.092025,False,False,93.0,465,207.9543,0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,1.0
+M1_L33,1,False,WL21,"Single step: A=7, B=7 (worst-case L3 mult error)",1,1,49,32,17,17,34.693878,False,False,17.0,17,17.0,0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,1.0
+M1_L33,1,False,WL22,"Products designed to expose adder XOR-carry suppression, 16 steps",16,16,964,128,836,836,86.721992,False,False,371.125,836,458.6625,0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,1.0
+M1_L33,1,False,WL23,"Monotonic small increments, 60 steps [1,8]",60,60,1111,56,1055,1055,94.959496,False,False,527.3667,1055,614.358,0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,1.0
+M1_L33,1,False,WL24,"Held-out: uniform random full-range, 80 steps",80,80,21671,10848,10823,10823,49.942319,False,False,5798.2,54978,8639.9933,0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,1.0
+M1_L33,1,False,WL25,"Adversarial adder: A=255 with B in {1,3,5,7,...}, 20 steps",20,20,36464,31760,4704,4704,12.900395,False,False,2425.7,4704,2787.8365,0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,1.0
+Fix_M0A1,baseline_fixed,False,WL01,All-zero operands (20 steps),20,20,0,0,0,0,undefined,True,True,0.0,0,0.0,0,1.0,0.0,0.0,0.0,0.0,1.0,0.0,0.0
+Fix_M0A1,baseline_fixed,False,WL02,"Very small operands [1,5], 30 steps",30,30,259,227,32,32,12.355212,False,False,13.8667,32,17.0098,0,1.0,0.0,0.0,0.0,0.0,1.0,0.0,0.0
+Fix_M0A1,baseline_fixed,False,WL03,"Boundary operands for L1 truncation (A,B in {1,2,3,4})",16,16,100,84,16,16,16.0,False,False,10.25,16,11.6619,0,1.0,0.0,0.0,0.0,0.0,1.0,0.0,0.0
+Fix_M0A1,baseline_fixed,False,WL04,"Medium operands [32,96], 40 steps",40,40,30434,30384,50,50,0.16429,False,True,24.25,50,27.6134,0,1.0,0.0,0.0,0.0,0.0,1.0,0.0,0.0
+Fix_M0A1,baseline_fixed,False,WL05,"Large operands [192,255], 30 steps",30,30,37595,37567,28,28,0.074478,False,True,13.8,28,16.6973,0,1.0,0.0,0.0,0.0,0.0,1.0,0.0,0.0
+Fix_M0A1,baseline_fixed,False,WL06,"Maximum operands (255,255), 20 steps",20,20,55316,55296,20,20,0.036156,False,True,10.0,20,11.5758,0,1.0,0.0,0.0,0.0,0.0,1.0,0.0,0.0
+Fix_M0A1,baseline_fixed,False,WL07,"Alternating small and large operands, 16 steps",16,16,6896,6880,16,16,0.232019,False,True,8.25,16,9.5656,0,1.0,0.0,0.0,0.0,0.0,1.0,0.0,0.0
+Fix_M0A1,baseline_fixed,False,WL08,"One large (255) and one small (2..8) operand, 20 steps",20,20,21930,21896,34,34,0.155039,False,True,12.8,34,16.1121,0,1.0,0.0,0.0,0.0,0.0,1.0,0.0,0.0
+Fix_M0A1,baseline_fixed,False,WL09,"Operands around 127/128, 16 steps",16,16,61960,61944,16,16,0.025823,False,True,6.375,16,8.7892,0,1.0,0.0,0.0,0.0,0.0,1.0,0.0,0.0
+Fix_M0A1,baseline_fixed,False,WL10,"Random mixed operands, 50 steps",50,50,14863,14811,52,52,0.349862,False,True,26.48,52,30.0267,0,1.0,0.0,0.0,0.0,0.0,1.0,0.0,0.0
+Fix_M0A1,baseline_fixed,False,WL11,"Medium operands, initial_acc=32000 (near midpoint)",20,20,23977,23957,20,20,0.083413,False,True,7.9,20,9.3702,0,1.0,0.0,0.0,0.0,0.0,1.0,0.0,0.0
+Fix_M0A1,baseline_fixed,False,WL12,"Small operands, initial_acc=49000 (near 49152)",30,30,52655,52629,26,26,0.049378,False,True,11.6,26,15.02,0,1.0,0.0,0.0,0.0,0.0,1.0,0.0,0.0
+Fix_M0A1,baseline_fixed,False,WL13,"Large operands, initial_acc=64000 (near 65535, wraparound risk)",10,10,23106,23096,10,10,0.043279,False,True,3.8,10,4.5166,0,1.0,0.0,0.0,0.0,0.0,1.0,0.0,0.0
+Fix_M0A1,baseline_fixed,False,WL14,Operands that cause accumulator to wrap around 65535,10,10,60837,60833,4,4,0.006575,False,True,1.2,4,2.0,0,1.0,0.0,0.0,0.0,0.0,1.0,0.0,0.0
+Fix_M0A1,baseline_fixed,False,WL15,"Enable pauses (alternating en=0), 20 steps",20,13,5086,5072,14,14,0.275265,False,True,6.3,14,7.5233,0,1.0,0.0,0.0,0.0,0.0,1.0,0.0,0.0
+Fix_M0A1,baseline_fixed,False,WL16,Reset events mid-sequence (rst at step 9 and 17),24,24,19629,19625,4,4,0.020378,False,True,2.0,10,3.4641,0,1.0,0.0,0.0,0.0,0.0,1.0,0.0,0.0
+Fix_M0A1,baseline_fixed,False,WL17,"Long accumulation, 100 random steps",100,100,31163,31051,112,112,0.359401,False,True,50.56,112,59.1939,0,1.0,0.0,0.0,0.0,0.0,1.0,0.0,0.0
+Fix_M0A1,baseline_fixed,False,WL18,"Error accumulation: A,B always odd (maximize truncation effect)",40,40,33760,33680,80,80,0.236967,False,True,39.3,80,46.45,0,1.0,0.0,0.0,0.0,0.0,1.0,0.0,0.0
+Fix_M0A1,baseline_fixed,False,WL19,"Acc near zero (initial=5), small operands [1,3]",8,8,35,27,8,8,22.857143,False,False,5.25,8,5.8737,0,1.0,0.0,0.0,0.0,0.0,1.0,0.0,0.0
+Fix_M0A1,baseline_fixed,False,WL20,One or both operands = 0 (zero-product steps),10,10,489,489,0,0,0.0,False,True,0.0,0,0.0,0,1.0,0.0,0.0,0.0,0.0,1.0,0.0,0.0
+Fix_M0A1,baseline_fixed,False,WL21,"Single step: A=7, B=7 (worst-case L3 mult error)",1,1,49,49,0,0,0.0,False,True,0.0,0,0.0,0,1.0,0.0,0.0,0.0,0.0,1.0,0.0,0.0
+Fix_M0A1,baseline_fixed,False,WL22,"Products designed to expose adder XOR-carry suppression, 16 steps",16,16,964,920,44,44,4.564315,False,False,22.5,44,25.865,0,1.0,0.0,0.0,0.0,0.0,1.0,0.0,0.0
+Fix_M0A1,baseline_fixed,False,WL23,"Monotonic small increments, 60 steps [1,8]",60,60,1111,1053,58,58,5.220522,False,False,26.5667,58,30.808,0,1.0,0.0,0.0,0.0,0.0,1.0,0.0,0.0
+Fix_M0A1,baseline_fixed,False,WL24,"Held-out: uniform random full-range, 80 steps",80,80,21671,21613,58,58,0.267639,False,True,27.75,58,33.1632,0,1.0,0.0,0.0,0.0,0.0,1.0,0.0,0.0
+Fix_M0A1,baseline_fixed,False,WL25,"Adversarial adder: A=255 with B in {1,3,5,7,...}, 20 steps",20,20,36464,36424,40,40,0.109697,False,True,20.0,40,23.1948,0,1.0,0.0,0.0,0.0,0.0,1.0,0.0,0.0
+Fix_M0A2,baseline_fixed,False,WL01,All-zero operands (20 steps),20,20,0,0,0,0,undefined,True,True,0.0,0,0.0,0,1.0,0.0,0.0,0.0,0.0,0.0,1.0,0.0
+Fix_M0A2,baseline_fixed,False,WL02,"Very small operands [1,5], 30 steps",30,30,259,99,160,160,61.776062,False,False,69.8667,160,83.3515,0,1.0,0.0,0.0,0.0,0.0,0.0,1.0,0.0
+Fix_M0A2,baseline_fixed,False,WL03,"Boundary operands for L1 truncation (A,B in {1,2,3,4})",16,16,100,28,72,72,72.0,False,False,30.25,72,39.8999,0,1.0,0.0,0.0,0.0,0.0,0.0,1.0,0.0
+Fix_M0A2,baseline_fixed,False,WL04,"Medium operands [32,96], 40 steps",40,40,30434,30200,234,234,0.768877,False,True,109.85,234,127.2042,0,1.0,0.0,0.0,0.0,0.0,0.0,1.0,0.0
+Fix_M0A2,baseline_fixed,False,WL05,"Large operands [192,255], 30 steps",30,30,37595,37407,188,188,0.500066,False,True,87.4,188,106.6552,0,1.0,0.0,0.0,0.0,0.0,0.0,1.0,0.0
+Fix_M0A2,baseline_fixed,False,WL06,"Maximum operands (255,255), 20 steps",20,20,55316,55296,20,20,0.036156,False,True,10.0,20,11.5758,0,1.0,0.0,0.0,0.0,0.0,0.0,1.0,0.0
+Fix_M0A2,baseline_fixed,False,WL07,"Alternating small and large operands, 16 steps",16,16,6896,6824,72,72,1.044084,False,False,31.75,72,38.046,0,1.0,0.0,0.0,0.0,0.0,0.0,1.0,0.0
+Fix_M0A2,baseline_fixed,False,WL08,"One large (255) and one small (2..8) operand, 20 steps",20,20,21930,21696,234,234,1.067031,False,False,118.4,234,136.6938,0,1.0,0.0,0.0,0.0,0.0,0.0,1.0,0.0
+Fix_M0A2,baseline_fixed,False,WL09,"Operands around 127/128, 16 steps",16,16,61960,61856,104,104,0.16785,False,True,43.375,104,54.1779,0,1.0,0.0,0.0,0.0,0.0,0.0,1.0,0.0
+Fix_M0A2,baseline_fixed,False,WL10,"Random mixed operands, 50 steps",50,50,14863,14571,292,292,1.96461,False,False,134.16,292,158.2297,0,1.0,0.0,0.0,0.0,0.0,0.0,1.0,0.0
+Fix_M0A2,baseline_fixed,False,WL11,"Medium operands, initial_acc=32000 (near midpoint)",20,20,23977,23869,108,108,0.450432,False,True,48.7,108,59.1388,0,1.0,0.0,0.0,0.0,0.0,0.0,1.0,0.0
+Fix_M0A2,baseline_fixed,False,WL12,"Small operands, initial_acc=49000 (near 49152)",30,30,52655,52461,194,194,0.368436,False,True,105.2,194,122.5006,0,1.0,0.0,0.0,0.0,0.0,0.0,1.0,0.0
+Fix_M0A2,baseline_fixed,False,WL13,"Large operands, initial_acc=64000 (near 65535, wraparound risk)",10,10,23106,23008,98,98,0.424132,False,True,46.2,98,53.2579,0,1.0,0.0,0.0,0.0,0.0,0.0,1.0,0.0
+Fix_M0A2,baseline_fixed,False,WL14,Operands that cause accumulator to wrap around 65535,10,10,60837,60833,4,4,0.006575,False,True,1.2,4,2.0,0,1.0,0.0,0.0,0.0,0.0,0.0,1.0,0.0
+Fix_M0A2,baseline_fixed,False,WL15,"Enable pauses (alternating en=0), 20 steps",20,13,5086,5016,70,70,1.376327,False,False,30.3,70,40.0475,0,1.0,0.0,0.0,0.0,0.0,0.0,1.0,0.0
+Fix_M0A2,baseline_fixed,False,WL16,Reset events mid-sequence (rst at step 9 and 17),24,24,19629,19569,60,60,0.30567,False,True,22.6667,60,27.9046,0,1.0,0.0,0.0,0.0,0.0,0.0,1.0,0.0
+Fix_M0A2,baseline_fixed,False,WL17,"Long accumulation, 100 random steps",100,100,31163,30491,672,672,2.156403,False,False,1004.8,65384,6550.2512,0,1.0,0.0,0.0,0.0,0.0,0.0,1.0,0.0
+Fix_M0A2,baseline_fixed,False,WL18,"Error accumulation: A,B always odd (maximize truncation effect)",40,40,33760,33472,288,288,0.853081,False,True,133.1,288,156.5912,0,1.0,0.0,0.0,0.0,0.0,0.0,1.0,0.0
+Fix_M0A2,baseline_fixed,False,WL19,"Acc near zero (initial=5), small operands [1,3]",8,8,35,11,24,24,68.571429,False,False,12.25,24,14.089,0,1.0,0.0,0.0,0.0,0.0,0.0,1.0,0.0
+Fix_M0A2,baseline_fixed,False,WL20,One or both operands = 0 (zero-product steps),10,10,489,489,0,0,0.0,False,True,0.0,0,0.0,0,1.0,0.0,0.0,0.0,0.0,0.0,1.0,0.0
+Fix_M0A2,baseline_fixed,False,WL21,"Single step: A=7, B=7 (worst-case L3 mult error)",1,1,49,49,0,0,0.0,False,True,0.0,0,0.0,0,1.0,0.0,0.0,0.0,0.0,0.0,1.0,0.0
+Fix_M0A2,baseline_fixed,False,WL22,"Products designed to expose adder XOR-carry suppression, 16 steps",16,16,964,800,164,164,17.012448,False,False,79.5,164,92.5797,0,1.0,0.0,0.0,0.0,0.0,0.0,1.0,0.0
+Fix_M0A2,baseline_fixed,False,WL23,"Monotonic small increments, 60 steps [1,8]",60,60,1111,757,354,354,31.863186,False,False,174.7,354,205.3298,0,1.0,0.0,0.0,0.0,0.0,0.0,1.0,0.0
+Fix_M0A2,baseline_fixed,False,WL24,"Held-out: uniform random full-range, 80 steps",80,80,21671,21149,522,522,2.408749,False,False,249.35,522,291.9462,0,1.0,0.0,0.0,0.0,0.0,0.0,1.0,0.0
+Fix_M0A2,baseline_fixed,False,WL25,"Adversarial adder: A=255 with B in {1,3,5,7,...}, 20 steps",20,20,36464,36288,176,176,0.482668,False,True,90.0,176,101.6838,0,1.0,0.0,0.0,0.0,0.0,0.0,1.0,0.0
+Fix_M0A3,baseline_fixed,False,WL01,All-zero operands (20 steps),20,20,0,0,0,0,undefined,True,True,0.0,0,0.0,0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,1.0
+Fix_M0A3,baseline_fixed,False,WL02,"Very small operands [1,5], 30 steps",30,30,259,3,256,256,98.841699,False,False,104.0,256,124.6788,0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,1.0
+Fix_M0A3,baseline_fixed,False,WL03,"Boundary operands for L1 truncation (A,B in {1,2,3,4})",16,16,100,28,72,72,72.0,False,False,30.25,72,39.8999,0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,1.0
+Fix_M0A3,baseline_fixed,False,WL04,"Medium operands [32,96], 40 steps",40,40,30434,26200,4234,4234,13.912072,False,False,3629.35,62102,10112.4411,0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,1.0
+Fix_M0A3,baseline_fixed,False,WL05,"Large operands [192,255], 30 steps",30,30,37595,34431,3164,3164,8.416013,False,False,5537.9333,64340,16584.0238,0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,1.0
+Fix_M0A3,baseline_fixed,False,WL06,"Maximum operands (255,255), 20 steps",20,20,55316,55296,20,20,0.036156,False,True,10.0,20,11.5758,0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,1.0
+Fix_M0A3,baseline_fixed,False,WL07,"Alternating small and large operands, 16 steps",16,16,6896,5672,1224,1224,17.74942,False,False,551.75,1224,664.9207,0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,1.0
+Fix_M0A3,baseline_fixed,False,WL08,"One large (255) and one small (2..8) operand, 20 steps",20,20,21930,16896,5034,5034,22.954856,False,False,2518.4,5034,2914.8662,0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,1.0
+Fix_M0A3,baseline_fixed,False,WL09,"Operands around 127/128, 16 steps",16,16,61960,60192,1768,1768,2.853454,False,False,795.375,1768,945.0668,0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,1.0
+Fix_M0A3,baseline_fixed,False,WL10,"Random mixed operands, 50 steps",50,50,14863,7851,7012,7012,47.177555,False,False,7292.24,65040,16150.6687,0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,1.0
+Fix_M0A3,baseline_fixed,False,WL11,"Medium operands, initial_acc=32000 (near midpoint)",20,20,23977,22013,1964,1964,8.191183,False,False,4061.3,64318,14422.3856,0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,1.0
+Fix_M0A3,baseline_fixed,False,WL12,"Small operands, initial_acc=49000 (near 49152)",30,30,52655,50573,2082,2082,3.95404,False,False,1279.6,2082,1416.071,0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,1.0
+Fix_M0A3,baseline_fixed,False,WL13,"Large operands, initial_acc=64000 (near 65535, wraparound risk)",10,10,23106,22208,898,898,3.886436,False,False,462.2,898,547.4081,0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,1.0
+Fix_M0A3,baseline_fixed,False,WL14,Operands that cause accumulator to wrap around 65535,10,10,60837,60449,388,388,0.63777,False,True,308.4,388,325.2433,0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,1.0
+Fix_M0A3,baseline_fixed,False,WL15,"Enable pauses (alternating en=0), 20 steps",20,13,5086,3320,1766,1766,34.722768,False,False,4044.5,63774,14295.6789,0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,1.0
+Fix_M0A3,baseline_fixed,False,WL16,Reset events mid-sequence (rst at step 9 and 17),24,24,19629,18289,1340,1340,6.826634,False,False,597.3333,1340,713.2087,0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,1.0
+Fix_M0A3,baseline_fixed,False,WL17,"Long accumulation, 100 random steps",100,100,31163,18523,12640,12640,40.560922,False,False,11132.72,63720,19501.5271,0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,1.0
+Fix_M0A3,baseline_fixed,False,WL18,"Error accumulation: A,B always odd (maximize truncation effect)",40,40,33760,29152,4608,4608,13.649289,False,False,3856.4,61458,10088.4228,0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,1.0
+Fix_M0A3,baseline_fixed,False,WL19,"Acc near zero (initial=5), small operands [1,3]",8,8,35,11,24,24,68.571429,False,False,12.25,24,14.089,0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,1.0
+Fix_M0A3,baseline_fixed,False,WL20,One or both operands = 0 (zero-product steps),10,10,489,489,0,0,0.0,False,True,0.0,0,0.0,0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,1.0
+Fix_M0A3,baseline_fixed,False,WL21,"Single step: A=7, B=7 (worst-case L3 mult error)",1,1,49,49,0,0,0.0,False,True,0.0,0,0.0,0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,1.0
+Fix_M0A3,baseline_fixed,False,WL22,"Products designed to expose adder XOR-carry suppression, 16 steps",16,16,964,128,836,836,86.721992,False,False,377.5,836,461.7824,0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,1.0
+Fix_M0A3,baseline_fixed,False,WL23,"Monotonic small increments, 60 steps [1,8]",60,60,1111,53,1058,1058,95.229523,False,False,525.1,1058,612.347,0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,1.0
+Fix_M0A3,baseline_fixed,False,WL24,"Held-out: uniform random full-range, 80 steps",80,80,21671,10813,10858,10858,50.103825,False,False,5794.3,54934,8634.6424,0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,1.0
+Fix_M0A3,baseline_fixed,False,WL25,"Adversarial adder: A=255 with B in {1,3,5,7,...}, 20 steps",20,20,36464,31744,4720,4720,12.944274,False,False,2426.0,4720,2789.2864,0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,1.0
+Fix_M1A0,baseline_fixed,True,WL01,All-zero operands (20 steps),20,20,0,0,0,0,undefined,True,True,0.0,0,0.0,0,0.0,1.0,0.0,0.0,1.0,0.0,0.0,0.0
+Fix_M1A0,baseline_fixed,True,WL02,"Very small operands [1,5], 30 steps",30,30,259,250,9,9,3.474903,False,False,4.1667,9,4.9967,0,0.0,1.0,0.0,0.0,1.0,0.0,0.0,0.0
+Fix_M1A0,baseline_fixed,True,WL03,"Boundary operands for L1 truncation (A,B in {1,2,3,4})",16,16,100,96,4,4,4.0,False,False,2.75,4,2.958,0,0.0,1.0,0.0,0.0,1.0,0.0,0.0,0.0
+Fix_M1A0,baseline_fixed,True,WL04,"Medium operands [32,96], 40 steps",40,40,30434,30420,14,14,0.046001,False,True,7.15,14,8.2704,0,0.0,1.0,0.0,0.0,1.0,0.0,0.0,0.0
+Fix_M1A0,baseline_fixed,True,WL05,"Large operands [192,255], 30 steps",30,30,37595,37586,9,9,0.023939,False,True,4.6667,9,5.3479,0,0.0,1.0,0.0,0.0,1.0,0.0,0.0,0.0
+Fix_M1A0,baseline_fixed,True,WL06,"Maximum operands (255,255), 20 steps",20,20,55316,55296,20,20,0.036156,False,True,10.5,20,11.9791,0,0.0,1.0,0.0,0.0,1.0,0.0,0.0,0.0
+Fix_M1A0,baseline_fixed,True,WL07,"Alternating small and large operands, 16 steps",16,16,6896,6892,4,4,0.058005,False,True,2.4375,4,2.7726,0,0.0,1.0,0.0,0.0,1.0,0.0,0.0,0.0
+Fix_M1A0,baseline_fixed,True,WL08,"One large (255) and one small (2..8) operand, 20 steps",20,20,21930,21916,14,14,0.063839,False,True,7.0,14,7.9498,0,0.0,1.0,0.0,0.0,1.0,0.0,0.0,0.0
+Fix_M1A0,baseline_fixed,True,WL09,"Operands around 127/128, 16 steps",16,16,61960,61956,4,4,0.006456,False,True,1.6875,4,2.3585,0,0.0,1.0,0.0,0.0,1.0,0.0,0.0,0.0
+Fix_M1A0,baseline_fixed,True,WL10,"Random mixed operands, 50 steps",50,50,14863,14850,13,13,0.087466,False,True,5.92,13,6.6393,0,0.0,1.0,0.0,0.0,1.0,0.0,0.0,0.0
+Fix_M1A0,baseline_fixed,True,WL11,"Medium operands, initial_acc=32000 (near midpoint)",20,20,23977,23972,5,5,0.020853,False,True,2.3,5,2.6833,0,0.0,1.0,0.0,0.0,1.0,0.0,0.0,0.0
+Fix_M1A0,baseline_fixed,True,WL12,"Small operands, initial_acc=49000 (near 49152)",30,30,52655,52648,7,7,0.013294,False,True,4.2333,7,4.9227,0,0.0,1.0,0.0,0.0,1.0,0.0,0.0,0.0
+Fix_M1A0,baseline_fixed,True,WL13,"Large operands, initial_acc=64000 (near 65535, wraparound risk)",10,10,23106,23100,6,6,0.025967,False,True,3.7,6,3.937,0,0.0,1.0,0.0,0.0,1.0,0.0,0.0,0.0
+Fix_M1A0,baseline_fixed,True,WL14,Operands that cause accumulator to wrap around 65535,10,10,60837,60832,5,5,0.008219,False,True,1.5,5,2.3452,0,0.0,1.0,0.0,0.0,1.0,0.0,0.0,0.0
+Fix_M1A0,baseline_fixed,True,WL15,"Enable pauses (alternating en=0), 20 steps",20,13,5086,5084,2,2,0.039324,False,True,1.15,2,1.5,0,0.0,1.0,0.0,0.0,1.0,0.0,0.0,0.0
+Fix_M1A0,baseline_fixed,True,WL16,Reset events mid-sequence (rst at step 9 and 17),24,24,19629,19628,1,1,0.005095,False,True,0.7083,2,1.0206,0,0.0,1.0,0.0,0.0,1.0,0.0,0.0,0.0
+Fix_M1A0,baseline_fixed,True,WL17,"Long accumulation, 100 random steps",100,100,31163,31138,25,25,0.080223,False,True,12.15,25,14.1644,0,0.0,1.0,0.0,0.0,1.0,0.0,0.0,0.0
+Fix_M1A0,baseline_fixed,True,WL18,"Error accumulation: A,B always odd (maximize truncation effect)",40,40,33760,33720,40,40,0.118483,False,True,20.5,40,23.5266,0,0.0,1.0,0.0,0.0,1.0,0.0,0.0,0.0
+Fix_M1A0,baseline_fixed,True,WL19,"Acc near zero (initial=5), small operands [1,3]",8,8,35,31,4,4,11.428571,False,False,2.25,4,2.5495,0,0.0,1.0,0.0,0.0,1.0,0.0,0.0,0.0
+Fix_M1A0,baseline_fixed,True,WL20,One or both operands = 0 (zero-product steps),10,10,489,488,1,1,0.204499,False,True,0.2,1,0.4472,0,0.0,1.0,0.0,0.0,1.0,0.0,0.0,0.0
+Fix_M1A0,baseline_fixed,True,WL21,"Single step: A=7, B=7 (worst-case L3 mult error)",1,1,49,48,1,1,2.040816,False,False,1.0,1,1.0,0,0.0,1.0,0.0,0.0,1.0,0.0,0.0,0.0
+Fix_M1A0,baseline_fixed,True,WL22,"Products designed to expose adder XOR-carry suppression, 16 steps",16,16,964,948,16,16,1.659751,False,False,8.5,16,9.6695,0,0.0,1.0,0.0,0.0,1.0,0.0,0.0,0.0
+Fix_M1A0,baseline_fixed,True,WL23,"Monotonic small increments, 60 steps [1,8]",60,60,1111,1096,15,15,1.350135,False,False,6.9333,15,8.0146,0,0.0,1.0,0.0,0.0,1.0,0.0,0.0,0.0
+Fix_M1A0,baseline_fixed,True,WL24,"Held-out: uniform random full-range, 80 steps",80,80,21671,21656,15,15,0.069217,False,True,6.425,15,7.4783,0,0.0,1.0,0.0,0.0,1.0,0.0,0.0,0.0
+Fix_M1A0,baseline_fixed,True,WL25,"Adversarial adder: A=255 with B in {1,3,5,7,...}, 20 steps",20,20,36464,36444,20,20,0.054849,False,True,10.5,20,11.9791,0,0.0,1.0,0.0,0.0,1.0,0.0,0.0,0.0
+Fix_M1A2,baseline_fixed,False,WL01,All-zero operands (20 steps),20,20,0,0,0,0,undefined,True,True,0.0,0,0.0,0,0.0,1.0,0.0,0.0,0.0,0.0,1.0,0.0
+Fix_M1A2,baseline_fixed,False,WL02,"Very small operands [1,5], 30 steps",30,30,259,98,161,161,62.162162,False,False,70.5667,161,83.8676,0,0.0,1.0,0.0,0.0,0.0,0.0,1.0,0.0
+Fix_M1A2,baseline_fixed,False,WL03,"Boundary operands for L1 truncation (A,B in {1,2,3,4})",16,16,100,28,72,72,72.0,False,False,30.5,72,39.9781,0,0.0,1.0,0.0,0.0,0.0,0.0,1.0,0.0
+Fix_M1A2,baseline_fixed,False,WL04,"Medium operands [32,96], 40 steps",40,40,30434,30200,234,234,0.768877,False,True,110.35,234,127.6111,0,0.0,1.0,0.0,0.0,0.0,0.0,1.0,0.0
+Fix_M1A2,baseline_fixed,False,WL05,"Large operands [192,255], 30 steps",30,30,37595,37406,189,189,0.502726,False,True,88.0,189,107.1812,0,0.0,1.0,0.0,0.0,0.0,0.0,1.0,0.0
+Fix_M1A2,baseline_fixed,False,WL06,"Maximum operands (255,255), 20 steps",20,20,55316,55296,20,20,0.036156,False,True,10.5,20,11.9791,0,0.0,1.0,0.0,0.0,0.0,0.0,1.0,0.0
+Fix_M1A2,baseline_fixed,False,WL07,"Alternating small and large operands, 16 steps",16,16,6896,6824,72,72,1.044084,False,False,32.1875,72,38.2908,0,0.0,1.0,0.0,0.0,0.0,0.0,1.0,0.0
+Fix_M1A2,baseline_fixed,False,WL08,"One large (255) and one small (2..8) operand, 20 steps",20,20,21930,21696,234,234,1.067031,False,False,119.0,234,137.1525,0,0.0,1.0,0.0,0.0,0.0,0.0,1.0,0.0
+Fix_M1A2,baseline_fixed,False,WL09,"Operands around 127/128, 16 steps",16,16,61960,61856,104,104,0.16785,False,True,43.6875,104,54.4983,0,0.0,1.0,0.0,0.0,0.0,0.0,1.0,0.0
+Fix_M1A2,baseline_fixed,False,WL10,"Random mixed operands, 50 steps",50,50,14863,14570,293,293,1.971338,False,False,134.72,293,158.699,0,0.0,1.0,0.0,0.0,0.0,0.0,1.0,0.0
+Fix_M1A2,baseline_fixed,False,WL11,"Medium operands, initial_acc=32000 (near midpoint)",20,20,23977,23868,109,109,0.454602,False,True,49.3,109,59.7227,0,0.0,1.0,0.0,0.0,0.0,0.0,1.0,0.0
+Fix_M1A2,baseline_fixed,False,WL12,"Small operands, initial_acc=49000 (near 49152)",30,30,52655,52460,195,195,0.370335,False,True,105.7,195,122.9286,0,0.0,1.0,0.0,0.0,0.0,0.0,1.0,0.0
+Fix_M1A2,baseline_fixed,False,WL13,"Large operands, initial_acc=64000 (near 65535, wraparound risk)",10,10,23106,23008,98,98,0.424132,False,True,46.5,98,53.4369,0,0.0,1.0,0.0,0.0,0.0,0.0,1.0,0.0
+Fix_M1A2,baseline_fixed,False,WL14,Operands that cause accumulator to wrap around 65535,10,10,60837,60832,5,5,0.008219,False,True,1.5,5,2.3452,0,0.0,1.0,0.0,0.0,0.0,0.0,1.0,0.0
+Fix_M1A2,baseline_fixed,False,WL15,"Enable pauses (alternating en=0), 20 steps",20,13,5086,5016,70,70,1.376327,False,False,30.35,70,40.083,0,0.0,1.0,0.0,0.0,0.0,0.0,1.0,0.0
+Fix_M1A2,baseline_fixed,False,WL16,Reset events mid-sequence (rst at step 9 and 17),24,24,19629,19568,61,61,0.310765,False,True,23.0417,61,28.2968,0,0.0,1.0,0.0,0.0,0.0,0.0,1.0,0.0
+Fix_M1A2,baseline_fixed,False,WL17,"Long accumulation, 100 random steps",100,100,31163,30490,673,673,2.159612,False,False,1005.39,65384,6550.2867,0,0.0,1.0,0.0,0.0,0.0,0.0,1.0,0.0
+Fix_M1A2,baseline_fixed,False,WL18,"Error accumulation: A,B always odd (maximize truncation effect)",40,40,33760,33472,288,288,0.853081,False,True,133.6,288,157.0048,0,0.0,1.0,0.0,0.0,0.0,0.0,1.0,0.0
+Fix_M1A2,baseline_fixed,False,WL19,"Acc near zero (initial=5), small operands [1,3]",8,8,35,11,24,24,68.571429,False,False,11.75,24,13.8384,0,0.0,1.0,0.0,0.0,0.0,0.0,1.0,0.0
+Fix_M1A2,baseline_fixed,False,WL20,One or both operands = 0 (zero-product steps),10,10,489,488,1,1,0.204499,False,True,0.2,1,0.4472,0,0.0,1.0,0.0,0.0,0.0,0.0,1.0,0.0
+Fix_M1A2,baseline_fixed,False,WL21,"Single step: A=7, B=7 (worst-case L3 mult error)",1,1,49,48,1,1,2.040816,False,False,1.0,1,1.0,0,0.0,1.0,0.0,0.0,0.0,0.0,1.0,0.0
+Fix_M1A2,baseline_fixed,False,WL22,"Products designed to expose adder XOR-carry suppression, 16 steps",16,16,964,800,164,164,17.012448,False,False,80.0,164,92.9839,0,0.0,1.0,0.0,0.0,0.0,0.0,1.0,0.0
+Fix_M1A2,baseline_fixed,False,WL23,"Monotonic small increments, 60 steps [1,8]",60,60,1111,756,355,355,31.953195,False,False,175.1333,355,205.6653,0,0.0,1.0,0.0,0.0,0.0,0.0,1.0,0.0
+Fix_M1A2,baseline_fixed,False,WL24,"Held-out: uniform random full-range, 80 steps",80,80,21671,21148,523,523,2.413363,False,False,250.025,523,292.5049,0,0.0,1.0,0.0,0.0,0.0,0.0,1.0,0.0
+Fix_M1A2,baseline_fixed,False,WL25,"Adversarial adder: A=255 with B in {1,3,5,7,...}, 20 steps",20,20,36464,36288,176,176,0.482668,False,True,90.5,176,102.0897,0,0.0,1.0,0.0,0.0,0.0,0.0,1.0,0.0
+Fix_M1A3,baseline_fixed,False,WL01,All-zero operands (20 steps),20,20,0,0,0,0,undefined,True,True,0.0,0,0.0,0,0.0,1.0,0.0,0.0,0.0,0.0,0.0,1.0
+Fix_M1A3,baseline_fixed,False,WL02,"Very small operands [1,5], 30 steps",30,30,259,2,257,257,99.227799,False,False,104.7,257,125.1864,0,0.0,1.0,0.0,0.0,0.0,0.0,0.0,1.0
+Fix_M1A3,baseline_fixed,False,WL03,"Boundary operands for L1 truncation (A,B in {1,2,3,4})",16,16,100,28,72,72,72.0,False,False,30.5,72,39.9781,0,0.0,1.0,0.0,0.0,0.0,0.0,0.0,1.0
+Fix_M1A3,baseline_fixed,False,WL04,"Medium operands [32,96], 40 steps",40,40,30434,26200,4234,4234,13.912072,False,False,3629.8,62101,10112.3801,0,0.0,1.0,0.0,0.0,0.0,0.0,0.0,1.0
+Fix_M1A3,baseline_fixed,False,WL05,"Large operands [192,255], 30 steps",30,30,37595,34430,3165,3165,8.418673,False,False,5538.4667,64340,16583.947,0,0.0,1.0,0.0,0.0,0.0,0.0,0.0,1.0
+Fix_M1A3,baseline_fixed,False,WL06,"Maximum operands (255,255), 20 steps",20,20,55316,55296,20,20,0.036156,False,True,10.5,20,11.9791,0,0.0,1.0,0.0,0.0,0.0,0.0,0.0,1.0
+Fix_M1A3,baseline_fixed,False,WL07,"Alternating small and large operands, 16 steps",16,16,6896,5672,1224,1224,17.74942,False,False,552.1875,1224,665.1543,0,0.0,1.0,0.0,0.0,0.0,0.0,0.0,1.0
+Fix_M1A3,baseline_fixed,False,WL08,"One large (255) and one small (2..8) operand, 20 steps",20,20,21930,16896,5034,5034,22.954856,False,False,2519.0,5034,2915.3241,0,0.0,1.0,0.0,0.0,0.0,0.0,0.0,1.0
+Fix_M1A3,baseline_fixed,False,WL09,"Operands around 127/128, 16 steps",16,16,61960,60192,1768,1768,2.853454,False,False,795.6875,1768,945.4216,0,0.0,1.0,0.0,0.0,0.0,0.0,0.0,1.0
+Fix_M1A3,baseline_fixed,False,WL10,"Random mixed operands, 50 steps",50,50,14863,7850,7013,7013,47.184283,False,False,7292.68,65039,16150.5457,0,0.0,1.0,0.0,0.0,0.0,0.0,0.0,1.0
+Fix_M1A3,baseline_fixed,False,WL11,"Medium operands, initial_acc=32000 (near midpoint)",20,20,23977,22012,1965,1965,8.195354,False,False,4061.8,64317,14422.2023,0,0.0,1.0,0.0,0.0,0.0,0.0,0.0,1.0
+Fix_M1A3,baseline_fixed,False,WL12,"Small operands, initial_acc=49000 (near 49152)",30,30,52655,50572,2083,2083,3.95594,False,False,1280.1,2083,1416.52,0,0.0,1.0,0.0,0.0,0.0,0.0,0.0,1.0
+Fix_M1A3,baseline_fixed,False,WL13,"Large operands, initial_acc=64000 (near 65535, wraparound risk)",10,10,23106,22208,898,898,3.886436,False,False,462.5,898,547.6242,0,0.0,1.0,0.0,0.0,0.0,0.0,0.0,1.0
+Fix_M1A3,baseline_fixed,False,WL14,Operands that cause accumulator to wrap around 65535,10,10,60837,60448,389,389,0.639414,False,True,308.7,389,325.5996,0,0.0,1.0,0.0,0.0,0.0,0.0,0.0,1.0
+Fix_M1A3,baseline_fixed,False,WL15,"Enable pauses (alternating en=0), 20 steps",20,13,5086,3320,1766,1766,34.722768,False,False,4044.55,63774,14295.6818,0,0.0,1.0,0.0,0.0,0.0,0.0,0.0,1.0
+Fix_M1A3,baseline_fixed,False,WL16,Reset events mid-sequence (rst at step 9 and 17),24,24,19629,18288,1341,1341,6.831729,False,False,597.7083,1341,713.5718,0,0.0,1.0,0.0,0.0,0.0,0.0,0.0,1.0
+Fix_M1A3,baseline_fixed,False,WL17,"Long accumulation, 100 random steps",100,100,31163,18522,12641,12641,40.564131,False,False,11133.21,63720,19501.57,0,0.0,1.0,0.0,0.0,0.0,0.0,0.0,1.0
+Fix_M1A3,baseline_fixed,False,WL18,"Error accumulation: A,B always odd (maximize truncation effect)",40,40,33760,29152,4608,4608,13.649289,False,False,3856.9,61458,10088.5402,0,0.0,1.0,0.0,0.0,0.0,0.0,0.0,1.0
+Fix_M1A3,baseline_fixed,False,WL19,"Acc near zero (initial=5), small operands [1,3]",8,8,35,11,24,24,68.571429,False,False,11.75,24,13.8384,0,0.0,1.0,0.0,0.0,0.0,0.0,0.0,1.0
+Fix_M1A3,baseline_fixed,False,WL20,One or both operands = 0 (zero-product steps),10,10,489,488,1,1,0.204499,False,True,0.2,1,0.4472,0,0.0,1.0,0.0,0.0,0.0,0.0,0.0,1.0
+Fix_M1A3,baseline_fixed,False,WL21,"Single step: A=7, B=7 (worst-case L3 mult error)",1,1,49,48,1,1,2.040816,False,False,1.0,1,1.0,0,0.0,1.0,0.0,0.0,0.0,0.0,0.0,1.0
+Fix_M1A3,baseline_fixed,False,WL22,"Products designed to expose adder XOR-carry suppression, 16 steps",16,16,964,128,836,836,86.721992,False,False,378.0,836,462.1623,0,0.0,1.0,0.0,0.0,0.0,0.0,0.0,1.0
+Fix_M1A3,baseline_fixed,False,WL23,"Monotonic small increments, 60 steps [1,8]",60,60,1111,52,1059,1059,95.319532,False,False,525.5333,1059,612.6868,0,0.0,1.0,0.0,0.0,0.0,0.0,0.0,1.0
+Fix_M1A3,baseline_fixed,False,WL24,"Held-out: uniform random full-range, 80 steps",80,80,21671,10812,10859,10859,50.10844,False,False,5794.975,54934,8635.0369,0,0.0,1.0,0.0,0.0,0.0,0.0,0.0,1.0
+Fix_M1A3,baseline_fixed,False,WL25,"Adversarial adder: A=255 with B in {1,3,5,7,...}, 20 steps",20,20,36464,31744,4720,4720,12.944274,False,False,2426.5,4720,2789.6792,0,0.0,1.0,0.0,0.0,0.0,0.0,0.0,1.0
+Fix_M2A0,baseline_fixed,True,WL01,All-zero operands (20 steps),20,20,0,0,0,0,undefined,True,True,0.0,0,0.0,0,0.0,0.0,1.0,0.0,1.0,0.0,0.0,0.0
+Fix_M2A0,baseline_fixed,True,WL02,"Very small operands [1,5], 30 steps",30,30,259,224,35,35,13.513514,False,False,15.3667,35,18.3458,0,0.0,0.0,1.0,0.0,1.0,0.0,0.0,0.0
+Fix_M2A0,baseline_fixed,True,WL03,"Boundary operands for L1 truncation (A,B in {1,2,3,4})",16,16,100,80,20,20,20.0,False,False,12.5,20,14.151,0,0.0,0.0,1.0,0.0,1.0,0.0,0.0,0.0
+Fix_M2A0,baseline_fixed,True,WL04,"Medium operands [32,96], 40 steps",40,40,30434,30368,66,66,0.216863,False,True,33.5,66,38.2858,0,0.0,0.0,1.0,0.0,1.0,0.0,0.0,0.0
+Fix_M2A0,baseline_fixed,True,WL05,"Large operands [192,255], 30 steps",30,30,37595,37560,35,35,0.093097,False,True,19.4,35,21.7148,0,0.0,0.0,1.0,0.0,1.0,0.0,0.0,0.0
+Fix_M2A0,baseline_fixed,True,WL06,"Maximum operands (255,255), 20 steps",20,20,55316,55216,100,100,0.18078,False,True,52.5,100,59.8957,0,0.0,0.0,1.0,0.0,1.0,0.0,0.0,0.0
+Fix_M2A0,baseline_fixed,True,WL07,"Alternating small and large operands, 16 steps",16,16,6896,6872,24,24,0.348028,False,True,12.9375,24,15.1224,0,0.0,0.0,1.0,0.0,1.0,0.0,0.0,0.0
+Fix_M2A0,baseline_fixed,True,WL08,"One large (255) and one small (2..8) operand, 20 steps",20,20,21930,21864,66,66,0.300958,False,True,35.6,66,40.4426,0,0.0,0.0,1.0,0.0,1.0,0.0,0.0,0.0
+Fix_M2A0,baseline_fixed,True,WL09,"Operands around 127/128, 16 steps",16,16,61960,61944,16,16,0.025823,False,True,7.6875,16,9.4505,0,0.0,0.0,1.0,0.0,1.0,0.0,0.0,0.0
+Fix_M2A0,baseline_fixed,True,WL10,"Random mixed operands, 50 steps",50,50,14863,14792,71,71,0.477696,False,True,37.76,71,41.4922,0,0.0,0.0,1.0,0.0,1.0,0.0,0.0,0.0
+Fix_M2A0,baseline_fixed,True,WL11,"Medium operands, initial_acc=32000 (near midpoint)",20,20,23977,23952,25,25,0.104267,False,True,12.2,25,13.9929,0,0.0,0.0,1.0,0.0,1.0,0.0,0.0,0.0
+Fix_M2A0,baseline_fixed,True,WL12,"Small operands, initial_acc=49000 (near 49152)",30,30,52655,52620,35,35,0.06647,False,True,17.9667,35,22.2853,0,0.0,0.0,1.0,0.0,1.0,0.0,0.0,0.0
+Fix_M2A0,baseline_fixed,True,WL13,"Large operands, initial_acc=64000 (near 65535, wraparound risk)",10,10,23106,23084,22,22,0.095213,False,True,12.5,22,13.7077,0,0.0,0.0,1.0,0.0,1.0,0.0,0.0,0.0
+Fix_M2A0,baseline_fixed,True,WL14,Operands that cause accumulator to wrap around 65535,10,10,60837,60812,25,25,0.041093,False,True,7.5,25,11.726,0,0.0,0.0,1.0,0.0,1.0,0.0,0.0,0.0
+Fix_M2A0,baseline_fixed,True,WL15,"Enable pauses (alternating en=0), 20 steps",20,13,5086,5072,14,14,0.275265,False,True,7.15,14,8.1517,0,0.0,0.0,1.0,0.0,1.0,0.0,0.0,0.0
+Fix_M2A0,baseline_fixed,True,WL16,Reset events mid-sequence (rst at step 9 and 17),24,24,19629,19620,9,9,0.045851,False,True,4.9583,14,6.5224,0,0.0,0.0,1.0,0.0,1.0,0.0,0.0,0.0
+Fix_M2A0,baseline_fixed,True,WL17,"Long accumulation, 100 random steps",100,100,31163,31024,139,139,0.446042,False,True,66.55,139,77.7634,0,0.0,0.0,1.0,0.0,1.0,0.0,0.0,0.0
+Fix_M2A0,baseline_fixed,True,WL18,"Error accumulation: A,B always odd (maximize truncation effect)",40,40,33760,33636,124,124,0.367299,False,True,58.85,124,68.8448,0,0.0,0.0,1.0,0.0,1.0,0.0,0.0,0.0
+Fix_M2A0,baseline_fixed,True,WL19,"Acc near zero (initial=5), small operands [1,3]",8,8,35,21,14,14,40.0,False,False,7.75,14,9.2195,0,0.0,0.0,1.0,0.0,1.0,0.0,0.0,0.0
+Fix_M2A0,baseline_fixed,True,WL20,One or both operands = 0 (zero-product steps),10,10,489,484,5,5,1.022495,False,False,1.0,5,2.2361,0,0.0,0.0,1.0,0.0,1.0,0.0,0.0,0.0
+Fix_M2A0,baseline_fixed,True,WL21,"Single step: A=7, B=7 (worst-case L3 mult error)",1,1,49,44,5,5,10.204082,False,False,5.0,5,5.0,0,0.0,0.0,1.0,0.0,1.0,0.0,0.0,0.0
+Fix_M2A0,baseline_fixed,True,WL22,"Products designed to expose adder XOR-carry suppression, 16 steps",16,16,964,920,44,44,4.564315,False,False,23.875,44,26.949,0,0.0,0.0,1.0,0.0,1.0,0.0,0.0,0.0
+Fix_M2A0,baseline_fixed,True,WL23,"Monotonic small increments, 60 steps [1,8]",60,60,1111,1032,79,79,7.110711,False,False,37.2333,79,42.4048,0,0.0,0.0,1.0,0.0,1.0,0.0,0.0,0.0
+Fix_M2A0,baseline_fixed,True,WL24,"Held-out: uniform random full-range, 80 steps",80,80,21671,21596,75,75,0.346085,False,True,40.55,75,45.9704,0,0.0,0.0,1.0,0.0,1.0,0.0,0.0,0.0
+Fix_M2A0,baseline_fixed,True,WL25,"Adversarial adder: A=255 with B in {1,3,5,7,...}, 20 steps",20,20,36464,36384,80,80,0.219394,False,True,41.5,80,47.5026,0,0.0,0.0,1.0,0.0,1.0,0.0,0.0,0.0
+Fix_M2A1,baseline_fixed,False,WL01,All-zero operands (20 steps),20,20,0,0,0,0,undefined,True,True,0.0,0,0.0,0,0.0,0.0,1.0,0.0,0.0,1.0,0.0,0.0
+Fix_M2A1,baseline_fixed,False,WL02,"Very small operands [1,5], 30 steps",30,30,259,224,35,35,13.513514,False,False,15.3667,35,18.3458,0,0.0,0.0,1.0,0.0,0.0,1.0,0.0,0.0
+Fix_M2A1,baseline_fixed,False,WL03,"Boundary operands for L1 truncation (A,B in {1,2,3,4})",16,16,100,80,20,20,20.0,False,False,12.5,20,14.151,0,0.0,0.0,1.0,0.0,0.0,1.0,0.0,0.0
+Fix_M2A1,baseline_fixed,False,WL04,"Medium operands [32,96], 40 steps",40,40,30434,30368,66,66,0.216863,False,True,33.5,66,38.2858,0,0.0,0.0,1.0,0.0,0.0,1.0,0.0,0.0
+Fix_M2A1,baseline_fixed,False,WL05,"Large operands [192,255], 30 steps",30,30,37595,37560,35,35,0.093097,False,True,19.4,35,21.7148,0,0.0,0.0,1.0,0.0,0.0,1.0,0.0,0.0
+Fix_M2A1,baseline_fixed,False,WL06,"Maximum operands (255,255), 20 steps",20,20,55316,55216,100,100,0.18078,False,True,52.5,100,59.8957,0,0.0,0.0,1.0,0.0,0.0,1.0,0.0,0.0
+Fix_M2A1,baseline_fixed,False,WL07,"Alternating small and large operands, 16 steps",16,16,6896,6872,24,24,0.348028,False,True,12.9375,24,15.1224,0,0.0,0.0,1.0,0.0,0.0,1.0,0.0,0.0
+Fix_M2A1,baseline_fixed,False,WL08,"One large (255) and one small (2..8) operand, 20 steps",20,20,21930,21864,66,66,0.300958,False,True,35.6,66,40.4426,0,0.0,0.0,1.0,0.0,0.0,1.0,0.0,0.0
+Fix_M2A1,baseline_fixed,False,WL09,"Operands around 127/128, 16 steps",16,16,61960,61944,16,16,0.025823,False,True,7.6875,16,9.4505,0,0.0,0.0,1.0,0.0,0.0,1.0,0.0,0.0
+Fix_M2A1,baseline_fixed,False,WL10,"Random mixed operands, 50 steps",50,50,14863,14792,71,71,0.477696,False,True,37.76,71,41.4922,0,0.0,0.0,1.0,0.0,0.0,1.0,0.0,0.0
+Fix_M2A1,baseline_fixed,False,WL11,"Medium operands, initial_acc=32000 (near midpoint)",20,20,23977,23952,25,25,0.104267,False,True,12.2,25,13.9929,0,0.0,0.0,1.0,0.0,0.0,1.0,0.0,0.0
+Fix_M2A1,baseline_fixed,False,WL12,"Small operands, initial_acc=49000 (near 49152)",30,30,52655,52620,35,35,0.06647,False,True,17.9667,35,22.2853,0,0.0,0.0,1.0,0.0,0.0,1.0,0.0,0.0
+Fix_M2A1,baseline_fixed,False,WL13,"Large operands, initial_acc=64000 (near 65535, wraparound risk)",10,10,23106,23084,22,22,0.095213,False,True,12.5,22,13.7077,0,0.0,0.0,1.0,0.0,0.0,1.0,0.0,0.0
+Fix_M2A1,baseline_fixed,False,WL14,Operands that cause accumulator to wrap around 65535,10,10,60837,60812,25,25,0.041093,False,True,7.5,25,11.726,0,0.0,0.0,1.0,0.0,0.0,1.0,0.0,0.0
+Fix_M2A1,baseline_fixed,False,WL15,"Enable pauses (alternating en=0), 20 steps",20,13,5086,5072,14,14,0.275265,False,True,7.15,14,8.1517,0,0.0,0.0,1.0,0.0,0.0,1.0,0.0,0.0
+Fix_M2A1,baseline_fixed,False,WL16,Reset events mid-sequence (rst at step 9 and 17),24,24,19629,19620,9,9,0.045851,False,True,4.9583,14,6.5224,0,0.0,0.0,1.0,0.0,0.0,1.0,0.0,0.0
+Fix_M2A1,baseline_fixed,False,WL17,"Long accumulation, 100 random steps",100,100,31163,31024,139,139,0.446042,False,True,66.55,139,77.7634,0,0.0,0.0,1.0,0.0,0.0,1.0,0.0,0.0
+Fix_M2A1,baseline_fixed,False,WL18,"Error accumulation: A,B always odd (maximize truncation effect)",40,40,33760,33636,124,124,0.367299,False,True,58.85,124,68.8448,0,0.0,0.0,1.0,0.0,0.0,1.0,0.0,0.0
+Fix_M2A1,baseline_fixed,False,WL19,"Acc near zero (initial=5), small operands [1,3]",8,8,35,21,14,14,40.0,False,False,7.75,14,9.2195,0,0.0,0.0,1.0,0.0,0.0,1.0,0.0,0.0
+Fix_M2A1,baseline_fixed,False,WL20,One or both operands = 0 (zero-product steps),10,10,489,484,5,5,1.022495,False,False,1.0,5,2.2361,0,0.0,0.0,1.0,0.0,0.0,1.0,0.0,0.0
+Fix_M2A1,baseline_fixed,False,WL21,"Single step: A=7, B=7 (worst-case L3 mult error)",1,1,49,44,5,5,10.204082,False,False,5.0,5,5.0,0,0.0,0.0,1.0,0.0,0.0,1.0,0.0,0.0
+Fix_M2A1,baseline_fixed,False,WL22,"Products designed to expose adder XOR-carry suppression, 16 steps",16,16,964,920,44,44,4.564315,False,False,23.875,44,26.949,0,0.0,0.0,1.0,0.0,0.0,1.0,0.0,0.0
+Fix_M2A1,baseline_fixed,False,WL23,"Monotonic small increments, 60 steps [1,8]",60,60,1111,1032,79,79,7.110711,False,False,37.2333,79,42.4048,0,0.0,0.0,1.0,0.0,0.0,1.0,0.0,0.0
+Fix_M2A1,baseline_fixed,False,WL24,"Held-out: uniform random full-range, 80 steps",80,80,21671,21596,75,75,0.346085,False,True,40.55,75,45.9704,0,0.0,0.0,1.0,0.0,0.0,1.0,0.0,0.0
+Fix_M2A1,baseline_fixed,False,WL25,"Adversarial adder: A=255 with B in {1,3,5,7,...}, 20 steps",20,20,36464,36384,80,80,0.219394,False,True,41.5,80,47.5026,0,0.0,0.0,1.0,0.0,0.0,1.0,0.0,0.0
+Fix_M2A3,baseline_fixed,False,WL01,All-zero operands (20 steps),20,20,0,0,0,0,undefined,True,True,0.0,0,0.0,0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,1.0
+Fix_M2A3,baseline_fixed,False,WL02,"Very small operands [1,5], 30 steps",30,30,259,0,259,259,100.0,False,False,105.5,259,126.071,0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,1.0
+Fix_M2A3,baseline_fixed,False,WL03,"Boundary operands for L1 truncation (A,B in {1,2,3,4})",16,16,100,16,84,84,84.0,False,False,32.0,84,42.3232,0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,1.0
+Fix_M2A3,baseline_fixed,False,WL04,"Medium operands [32,96], 40 steps",40,40,30434,26200,4234,4234,13.912072,False,False,3630.65,62099,10112.2829,0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,1.0
+Fix_M2A3,baseline_fixed,False,WL05,"Large operands [192,255], 30 steps",30,30,37595,34400,3195,3195,8.498471,False,False,5540.2667,64358,16585.5079,0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,1.0
+Fix_M2A3,baseline_fixed,False,WL06,"Maximum operands (255,255), 20 steps",20,20,55316,50176,5140,5140,9.292067,False,False,2572.5,5140,2976.9353,0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,1.0
+Fix_M2A3,baseline_fixed,False,WL07,"Alternating small and large operands, 16 steps",16,16,6896,5576,1320,1320,19.141531,False,False,639.4375,1320,786.8346,0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,1.0
+Fix_M2A3,baseline_fixed,False,WL08,"One large (255) and one small (2..8) operand, 20 steps",20,20,21930,16896,5034,5034,22.954856,False,False,2520.0,5034,2916.2818,0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,1.0
+Fix_M2A3,baseline_fixed,False,WL09,"Operands around 127/128, 16 steps",16,16,61960,60192,1768,1768,2.853454,False,False,796.6875,1768,945.9082,0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,1.0
+Fix_M2A3,baseline_fixed,False,WL10,"Random mixed operands, 50 steps",50,50,14863,7920,6943,6943,46.713315,False,False,7306.68,65153,16169.6911,0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,1.0
+Fix_M2A3,baseline_fixed,False,WL11,"Medium operands, initial_acc=32000 (near midpoint)",20,20,23977,22000,1977,1977,8.245402,False,False,4063.9,64329,14425.0465,0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,1.0
+Fix_M2A3,baseline_fixed,False,WL12,"Small operands, initial_acc=49000 (near 49152)",30,30,52655,50572,2083,2083,3.95594,False,False,1280.9,2083,1417.4016,0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,1.0
+Fix_M2A3,baseline_fixed,False,WL13,"Large operands, initial_acc=64000 (near 65535, wraparound risk)",10,10,23106,22220,886,886,3.834502,False,False,461.3,886,546.7613,0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,1.0
+Fix_M2A3,baseline_fixed,False,WL14,Operands that cause accumulator to wrap around 65535,10,10,60837,59356,1481,1481,2.434374,False,False,636.3,1481,802.814,0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,1.0
+Fix_M2A3,baseline_fixed,False,WL15,"Enable pauses (alternating en=0), 20 steps",20,13,5086,3320,1766,1766,34.722768,False,False,4045.15,63772,14295.2733,0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,1.0
+Fix_M2A3,baseline_fixed,False,WL16,Reset events mid-sequence (rst at step 9 and 17),24,24,19629,18292,1337,1337,6.811351,False,False,597.625,1337,713.8748,0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,1.0
+Fix_M2A3,baseline_fixed,False,WL17,"Long accumulation, 100 random steps",100,100,31163,18472,12691,12691,40.724577,False,False,11123.73,63718,19496.5844,0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,1.0
+Fix_M2A3,baseline_fixed,False,WL18,"Error accumulation: A,B always odd (maximize truncation effect)",40,40,33760,29164,4596,4596,13.613744,False,False,3861.55,61406,10082.4642,0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,1.0
+Fix_M2A3,baseline_fixed,False,WL19,"Acc near zero (initial=5), small operands [1,3]",8,8,35,5,30,30,85.714286,False,False,16.75,30,20.0749,0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,1.0
+Fix_M2A3,baseline_fixed,False,WL20,One or both operands = 0 (zero-product steps),10,10,489,20,469,469,95.91002,False,False,93.8,469,209.7432,0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,1.0
+Fix_M2A3,baseline_fixed,False,WL21,"Single step: A=7, B=7 (worst-case L3 mult error)",1,1,49,44,5,5,10.204082,False,False,5.0,5,5.0,0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,1.0
+Fix_M2A3,baseline_fixed,False,WL22,"Products designed to expose adder XOR-carry suppression, 16 steps",16,16,964,128,836,836,86.721992,False,False,378.875,836,462.8026,0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,1.0
+Fix_M2A3,baseline_fixed,False,WL23,"Monotonic small increments, 60 steps [1,8]",60,60,1111,32,1079,1079,97.119712,False,False,527.7667,1079,615.9208,0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,1.0
+Fix_M2A3,baseline_fixed,False,WL24,"Held-out: uniform random full-range, 80 steps",80,80,21671,10804,10867,10867,50.145356,False,False,5796.2,54942,8636.371,0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,1.0
+Fix_M2A3,baseline_fixed,False,WL25,"Adversarial adder: A=255 with B in {1,3,5,7,...}, 20 steps",20,20,36464,31784,4680,4680,12.834577,False,False,2407.5,4680,2767.3159,0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,1.0
+Fix_M3A0,baseline_fixed,True,WL01,All-zero operands (20 steps),20,20,0,0,0,0,undefined,True,True,0.0,0,0.0,0,0.0,0.0,0.0,1.0,1.0,0.0,0.0,0.0
+Fix_M3A0,baseline_fixed,True,WL02,"Very small operands [1,5], 30 steps",30,30,259,160,99,99,38.223938,False,False,45.9,99,53.4917,0,0.0,0.0,0.0,1.0,1.0,0.0,0.0,0.0
+Fix_M3A0,baseline_fixed,True,WL03,"Boundary operands for L1 truncation (A,B in {1,2,3,4})",16,16,100,48,52,52,52.0,False,False,27.0,52,32.2607,0,0.0,0.0,0.0,1.0,1.0,0.0,0.0,0.0
+Fix_M3A0,baseline_fixed,True,WL04,"Medium operands [32,96], 40 steps",40,40,30434,30224,210,210,0.690018,False,True,103.2,210,118.783,0,0.0,0.0,0.0,1.0,1.0,0.0,0.0,0.0
+Fix_M3A0,baseline_fixed,True,WL05,"Large operands [192,255], 30 steps",30,30,37595,37472,123,123,0.327171,False,True,63.9333,123,72.5631,0,0.0,0.0,0.0,1.0,1.0,0.0,0.0,0.0
+Fix_M3A0,baseline_fixed,True,WL06,"Maximum operands (255,255), 20 steps",20,20,55316,54976,340,340,0.61465,False,True,178.5,340,203.6455,0,0.0,0.0,0.0,1.0,1.0,0.0,0.0,0.0
+Fix_M3A0,baseline_fixed,True,WL07,"Alternating small and large operands, 16 steps",16,16,6896,6824,72,72,1.044084,False,False,39.4375,72,45.4773,0,0.0,0.0,0.0,1.0,1.0,0.0,0.0,0.0
+Fix_M3A0,baseline_fixed,True,WL08,"One large (255) and one small (2..8) operand, 20 steps",20,20,21930,21720,210,210,0.957592,False,True,109.6,210,124.948,0,0.0,0.0,0.0,1.0,1.0,0.0,0.0,0.0
+Fix_M3A0,baseline_fixed,True,WL09,"Operands around 127/128, 16 steps",16,16,61960,61888,72,72,0.116204,False,True,39.4375,72,45.594,0,0.0,0.0,0.0,1.0,1.0,0.0,0.0,0.0
+Fix_M3A0,baseline_fixed,True,WL10,"Random mixed operands, 50 steps",50,50,14863,14632,231,231,1.554195,False,False,121.76,231,133.7843,0,0.0,0.0,0.0,1.0,1.0,0.0,0.0,0.0
+Fix_M3A0,baseline_fixed,True,WL11,"Medium operands, initial_acc=32000 (near midpoint)",20,20,23977,23880,97,97,0.404554,False,True,47.4,97,55.1453,0,0.0,0.0,0.0,1.0,1.0,0.0,0.0,0.0
+Fix_M3A0,baseline_fixed,True,WL12,"Small operands, initial_acc=49000 (near 49152)",30,30,52655,52528,127,127,0.241193,False,True,70.7667,127,82.2004,0,0.0,0.0,0.0,1.0,1.0,0.0,0.0,0.0
+Fix_M3A0,baseline_fixed,True,WL13,"Large operands, initial_acc=64000 (near 65535, wraparound risk)",10,10,23106,23048,58,58,0.251017,False,True,32.1,58,35.3935,0,0.0,0.0,0.0,1.0,1.0,0.0,0.0,0.0
+Fix_M3A0,baseline_fixed,True,WL14,Operands that cause accumulator to wrap around 65535,10,10,60837,60752,85,85,0.139718,False,True,25.5,85,39.8685,0,0.0,0.0,0.0,1.0,1.0,0.0,0.0,0.0
+Fix_M3A0,baseline_fixed,True,WL15,"Enable pauses (alternating en=0), 20 steps",20,13,5086,5024,62,62,1.219033,False,False,33.95,62,37.1383,0,0.0,0.0,0.0,1.0,1.0,0.0,0.0,0.0
+Fix_M3A0,baseline_fixed,True,WL16,Reset events mid-sequence (rst at step 9 and 17),24,24,19629,19592,37,37,0.188497,False,True,21.4583,54,26.4173,0,0.0,0.0,0.0,1.0,1.0,0.0,0.0,0.0
+Fix_M3A0,baseline_fixed,True,WL17,"Long accumulation, 100 random steps",100,100,31163,30704,459,459,1.472901,False,False,878.83,65458,6550.9259,0,0.0,0.0,0.0,1.0,1.0,0.0,0.0,0.0
+Fix_M3A0,baseline_fixed,True,WL18,"Error accumulation: A,B always odd (maximize truncation effect)",40,40,33760,33416,344,344,1.018957,False,False,170.35,344,196.2641,0,0.0,0.0,0.0,1.0,1.0,0.0,0.0,0.0
+Fix_M3A0,baseline_fixed,True,WL19,"Acc near zero (initial=5), small operands [1,3]",8,8,35,5,30,30,85.714286,False,False,14.75,30,18.0831,0,0.0,0.0,0.0,1.0,1.0,0.0,0.0,0.0
+Fix_M3A0,baseline_fixed,True,WL20,One or both operands = 0 (zero-product steps),10,10,489,472,17,17,3.476483,False,False,3.4,17,7.6026,0,0.0,0.0,0.0,1.0,1.0,0.0,0.0,0.0
+Fix_M3A0,baseline_fixed,True,WL21,"Single step: A=7, B=7 (worst-case L3 mult error)",1,1,49,32,17,17,34.693878,False,False,17.0,17,17.0,0,0.0,0.0,0.0,1.0,1.0,0.0,0.0,0.0
+Fix_M3A0,baseline_fixed,True,WL22,"Products designed to expose adder XOR-carry suppression, 16 steps",16,16,964,848,116,116,12.033195,False,False,62.125,116,70.4503,0,0.0,0.0,0.0,1.0,1.0,0.0,0.0,0.0
+Fix_M3A0,baseline_fixed,True,WL23,"Monotonic small increments, 60 steps [1,8]",60,60,1111,840,271,271,24.392439,False,False,135.6333,271,153.7896,0,0.0,0.0,0.0,1.0,1.0,0.0,0.0,0.0
+Fix_M3A0,baseline_fixed,True,WL24,"Held-out: uniform random full-range, 80 steps",80,80,21671,21360,311,311,1.435098,False,False,161.55,311,185.6329,0,0.0,0.0,0.0,1.0,1.0,0.0,0.0,0.0
+Fix_M3A0,baseline_fixed,True,WL25,"Adversarial adder: A=255 with B in {1,3,5,7,...}, 20 steps",20,20,36464,36224,240,240,0.658183,False,True,122.5,240,140.8563,0,0.0,0.0,0.0,1.0,1.0,0.0,0.0,0.0
+Fix_M3A1,baseline_fixed,False,WL01,All-zero operands (20 steps),20,20,0,0,0,0,undefined,True,True,0.0,0,0.0,0,0.0,0.0,0.0,1.0,0.0,1.0,0.0,0.0
+Fix_M3A1,baseline_fixed,False,WL02,"Very small operands [1,5], 30 steps",30,30,259,160,99,99,38.223938,False,False,45.9,99,53.4917,0,0.0,0.0,0.0,1.0,0.0,1.0,0.0,0.0
+Fix_M3A1,baseline_fixed,False,WL03,"Boundary operands for L1 truncation (A,B in {1,2,3,4})",16,16,100,48,52,52,52.0,False,False,27.0,52,32.2607,0,0.0,0.0,0.0,1.0,0.0,1.0,0.0,0.0
+Fix_M3A1,baseline_fixed,False,WL04,"Medium operands [32,96], 40 steps",40,40,30434,30224,210,210,0.690018,False,True,103.2,210,118.783,0,0.0,0.0,0.0,1.0,0.0,1.0,0.0,0.0
+Fix_M3A1,baseline_fixed,False,WL05,"Large operands [192,255], 30 steps",30,30,37595,37472,123,123,0.327171,False,True,63.9333,123,72.5631,0,0.0,0.0,0.0,1.0,0.0,1.0,0.0,0.0
+Fix_M3A1,baseline_fixed,False,WL06,"Maximum operands (255,255), 20 steps",20,20,55316,54976,340,340,0.61465,False,True,178.5,340,203.6455,0,0.0,0.0,0.0,1.0,0.0,1.0,0.0,0.0
+Fix_M3A1,baseline_fixed,False,WL07,"Alternating small and large operands, 16 steps",16,16,6896,6824,72,72,1.044084,False,False,39.4375,72,45.4773,0,0.0,0.0,0.0,1.0,0.0,1.0,0.0,0.0
+Fix_M3A1,baseline_fixed,False,WL08,"One large (255) and one small (2..8) operand, 20 steps",20,20,21930,21720,210,210,0.957592,False,True,109.6,210,124.948,0,0.0,0.0,0.0,1.0,0.0,1.0,0.0,0.0
+Fix_M3A1,baseline_fixed,False,WL09,"Operands around 127/128, 16 steps",16,16,61960,61888,72,72,0.116204,False,True,39.4375,72,45.594,0,0.0,0.0,0.0,1.0,0.0,1.0,0.0,0.0
+Fix_M3A1,baseline_fixed,False,WL10,"Random mixed operands, 50 steps",50,50,14863,14632,231,231,1.554195,False,False,121.76,231,133.7843,0,0.0,0.0,0.0,1.0,0.0,1.0,0.0,0.0
+Fix_M3A1,baseline_fixed,False,WL11,"Medium operands, initial_acc=32000 (near midpoint)",20,20,23977,23880,97,97,0.404554,False,True,47.4,97,55.1453,0,0.0,0.0,0.0,1.0,0.0,1.0,0.0,0.0
+Fix_M3A1,baseline_fixed,False,WL12,"Small operands, initial_acc=49000 (near 49152)",30,30,52655,52528,127,127,0.241193,False,True,70.7667,127,82.2004,0,0.0,0.0,0.0,1.0,0.0,1.0,0.0,0.0
+Fix_M3A1,baseline_fixed,False,WL13,"Large operands, initial_acc=64000 (near 65535, wraparound risk)",10,10,23106,23048,58,58,0.251017,False,True,32.1,58,35.3935,0,0.0,0.0,0.0,1.0,0.0,1.0,0.0,0.0
+Fix_M3A1,baseline_fixed,False,WL14,Operands that cause accumulator to wrap around 65535,10,10,60837,60752,85,85,0.139718,False,True,25.5,85,39.8685,0,0.0,0.0,0.0,1.0,0.0,1.0,0.0,0.0
+Fix_M3A1,baseline_fixed,False,WL15,"Enable pauses (alternating en=0), 20 steps",20,13,5086,5024,62,62,1.219033,False,False,33.95,62,37.1383,0,0.0,0.0,0.0,1.0,0.0,1.0,0.0,0.0
+Fix_M3A1,baseline_fixed,False,WL16,Reset events mid-sequence (rst at step 9 and 17),24,24,19629,19592,37,37,0.188497,False,True,21.4583,54,26.4173,0,0.0,0.0,0.0,1.0,0.0,1.0,0.0,0.0
+Fix_M3A1,baseline_fixed,False,WL17,"Long accumulation, 100 random steps",100,100,31163,30704,459,459,1.472901,False,False,878.83,65458,6550.9259,0,0.0,0.0,0.0,1.0,0.0,1.0,0.0,0.0
+Fix_M3A1,baseline_fixed,False,WL18,"Error accumulation: A,B always odd (maximize truncation effect)",40,40,33760,33416,344,344,1.018957,False,False,170.35,344,196.2641,0,0.0,0.0,0.0,1.0,0.0,1.0,0.0,0.0
+Fix_M3A1,baseline_fixed,False,WL19,"Acc near zero (initial=5), small operands [1,3]",8,8,35,5,30,30,85.714286,False,False,14.75,30,18.0831,0,0.0,0.0,0.0,1.0,0.0,1.0,0.0,0.0
+Fix_M3A1,baseline_fixed,False,WL20,One or both operands = 0 (zero-product steps),10,10,489,472,17,17,3.476483,False,False,3.4,17,7.6026,0,0.0,0.0,0.0,1.0,0.0,1.0,0.0,0.0
+Fix_M3A1,baseline_fixed,False,WL21,"Single step: A=7, B=7 (worst-case L3 mult error)",1,1,49,32,17,17,34.693878,False,False,17.0,17,17.0,0,0.0,0.0,0.0,1.0,0.0,1.0,0.0,0.0
+Fix_M3A1,baseline_fixed,False,WL22,"Products designed to expose adder XOR-carry suppression, 16 steps",16,16,964,848,116,116,12.033195,False,False,62.125,116,70.4503,0,0.0,0.0,0.0,1.0,0.0,1.0,0.0,0.0
+Fix_M3A1,baseline_fixed,False,WL23,"Monotonic small increments, 60 steps [1,8]",60,60,1111,840,271,271,24.392439,False,False,135.6333,271,153.7896,0,0.0,0.0,0.0,1.0,0.0,1.0,0.0,0.0
+Fix_M3A1,baseline_fixed,False,WL24,"Held-out: uniform random full-range, 80 steps",80,80,21671,21360,311,311,1.435098,False,False,161.55,311,185.6329,0,0.0,0.0,0.0,1.0,0.0,1.0,0.0,0.0
+Fix_M3A1,baseline_fixed,False,WL25,"Adversarial adder: A=255 with B in {1,3,5,7,...}, 20 steps",20,20,36464,36224,240,240,0.658183,False,True,122.5,240,140.8563,0,0.0,0.0,0.0,1.0,0.0,1.0,0.0,0.0
+Fix_M3A2,baseline_fixed,False,WL01,All-zero operands (20 steps),20,20,0,0,0,0,undefined,True,True,0.0,0,0.0,0,0.0,0.0,0.0,1.0,0.0,0.0,1.0,0.0
+Fix_M3A2,baseline_fixed,False,WL02,"Very small operands [1,5], 30 steps",30,30,259,96,163,163,62.934363,False,False,73.6333,163,86.6227,0,0.0,0.0,0.0,1.0,0.0,0.0,1.0,0.0
+Fix_M3A2,baseline_fixed,False,WL03,"Boundary operands for L1 truncation (A,B in {1,2,3,4})",16,16,100,16,84,84,84.0,False,False,34.0,84,43.735,0,0.0,0.0,0.0,1.0,0.0,0.0,1.0,0.0
+Fix_M3A2,baseline_fixed,False,WL04,"Medium operands [32,96], 40 steps",40,40,30434,30064,370,370,1.215746,False,False,192.0,370,219.1762,0,0.0,0.0,0.0,1.0,0.0,0.0,1.0,0.0
+Fix_M3A2,baseline_fixed,False,WL05,"Large operands [192,255], 30 steps",30,30,37595,37360,235,235,0.625083,False,True,117.8,235,135.3211,0,0.0,0.0,0.0,1.0,0.0,0.0,1.0,0.0
+Fix_M3A2,baseline_fixed,False,WL06,"Maximum operands (255,255), 20 steps",20,20,55316,54976,340,340,0.61465,False,True,178.5,340,203.6455,0,0.0,0.0,0.0,1.0,0.0,0.0,1.0,0.0
+Fix_M3A2,baseline_fixed,False,WL07,"Alternating small and large operands, 16 steps",16,16,6896,6776,120,120,1.740139,False,False,65.4375,120,74.6471,0,0.0,0.0,0.0,1.0,0.0,0.0,1.0,0.0
+Fix_M3A2,baseline_fixed,False,WL08,"One large (255) and one small (2..8) operand, 20 steps",20,20,21930,21672,258,258,1.176471,False,False,136.8,258,157.2743,0,0.0,0.0,0.0,1.0,0.0,0.0,1.0,0.0
+Fix_M3A2,baseline_fixed,False,WL09,"Operands around 127/128, 16 steps",16,16,61960,61808,152,152,0.24532,False,True,77.4375,152,90.6356,0,0.0,0.0,0.0,1.0,0.0,0.0,1.0,0.0
+Fix_M3A2,baseline_fixed,False,WL10,"Random mixed operands, 50 steps",50,50,14863,14504,359,359,2.415394,False,False,180.64,359,206.3767,0,0.0,0.0,0.0,1.0,0.0,0.0,1.0,0.0
+Fix_M3A2,baseline_fixed,False,WL11,"Medium operands, initial_acc=32000 (near midpoint)",20,20,23977,23848,129,129,0.538016,False,True,62.6,129,73.9365,0,0.0,0.0,0.0,1.0,0.0,0.0,1.0,0.0
+Fix_M3A2,baseline_fixed,False,WL12,"Small operands, initial_acc=49000 (near 49152)",30,30,52655,52416,239,239,0.453898,False,True,133.7,239,152.3561,0,0.0,0.0,0.0,1.0,0.0,0.0,1.0,0.0
+Fix_M3A2,baseline_fixed,False,WL13,"Large operands, initial_acc=64000 (near 65535, wraparound risk)",10,10,23106,23016,90,90,0.389509,False,True,48.1,90,54.8881,0,0.0,0.0,0.0,1.0,0.0,0.0,1.0,0.0
+Fix_M3A2,baseline_fixed,False,WL14,Operands that cause accumulator to wrap around 65535,10,10,60837,60752,85,85,0.139718,False,True,25.5,85,39.8685,0,0.0,0.0,0.0,1.0,0.0,0.0,1.0,0.0
+Fix_M3A2,baseline_fixed,False,WL15,"Enable pauses (alternating en=0), 20 steps",20,13,5086,4976,110,110,2.1628,False,False,50.75,110,59.4512,0,0.0,0.0,0.0,1.0,0.0,0.0,1.0,0.0
+Fix_M3A2,baseline_fixed,False,WL16,Reset events mid-sequence (rst at step 9 and 17),24,24,19629,19560,69,69,0.351521,False,True,30.7917,74,37.0658,0,0.0,0.0,0.0,1.0,0.0,0.0,1.0,0.0
+Fix_M3A2,baseline_fixed,False,WL17,"Long accumulation, 100 random steps",100,100,31163,30336,827,827,2.653788,False,False,1078.03,65378,6555.4706,0,0.0,0.0,0.0,1.0,0.0,0.0,1.0,0.0
+Fix_M3A2,baseline_fixed,False,WL18,"Error accumulation: A,B always odd (maximize truncation effect)",40,40,33760,33320,440,440,1.303318,False,False,218.75,440,254.2338,0,0.0,0.0,0.0,1.0,0.0,0.0,1.0,0.0
+Fix_M3A2,baseline_fixed,False,WL19,"Acc near zero (initial=5), small operands [1,3]",8,8,35,5,30,30,85.714286,False,False,14.75,30,18.0831,0,0.0,0.0,0.0,1.0,0.0,0.0,1.0,0.0
+Fix_M3A2,baseline_fixed,False,WL20,One or both operands = 0 (zero-product steps),10,10,489,472,17,17,3.476483,False,False,3.4,17,7.6026,0,0.0,0.0,0.0,1.0,0.0,0.0,1.0,0.0
+Fix_M3A2,baseline_fixed,False,WL21,"Single step: A=7, B=7 (worst-case L3 mult error)",1,1,49,32,17,17,34.693878,False,False,17.0,17,17.0,0,0.0,0.0,0.0,1.0,0.0,0.0,1.0,0.0
+Fix_M3A2,baseline_fixed,False,WL22,"Products designed to expose adder XOR-carry suppression, 16 steps",16,16,964,736,228,228,23.651452,False,False,117.125,228,134.474,0,0.0,0.0,0.0,1.0,0.0,0.0,1.0,0.0
+Fix_M3A2,baseline_fixed,False,WL23,"Monotonic small increments, 60 steps [1,8]",60,60,1111,664,447,447,40.234023,False,False,224.9667,447,259.3099,0,0.0,0.0,0.0,1.0,0.0,0.0,1.0,0.0
+Fix_M3A2,baseline_fixed,False,WL24,"Held-out: uniform random full-range, 80 steps",80,80,21671,21024,647,647,2.985557,False,False,328.15,647,378.8889,0,0.0,0.0,0.0,1.0,0.0,0.0,1.0,0.0
+Fix_M3A2,baseline_fixed,False,WL25,"Adversarial adder: A=255 with B in {1,3,5,7,...}, 20 steps",20,20,36464,36144,320,320,0.877578,False,True,160.1,320,185.1888,0,0.0,0.0,0.0,1.0,0.0,0.0,1.0,0.0
+Fix_M0A0,baseline_fixed,True,WL01,All-zero operands (20 steps),20,20,0,0,0,0,undefined,True,True,0.0,0,0.0,0,1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0
+Fix_M0A0,baseline_fixed,True,WL02,"Very small operands [1,5], 30 steps",30,30,259,259,0,0,0.0,False,True,0.0,0,0.0,0,1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0
+Fix_M0A0,baseline_fixed,True,WL03,"Boundary operands for L1 truncation (A,B in {1,2,3,4})",16,16,100,100,0,0,0.0,False,True,0.0,0,0.0,0,1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0
+Fix_M0A0,baseline_fixed,True,WL04,"Medium operands [32,96], 40 steps",40,40,30434,30434,0,0,0.0,False,True,0.0,0,0.0,0,1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0
+Fix_M0A0,baseline_fixed,True,WL05,"Large operands [192,255], 30 steps",30,30,37595,37595,0,0,0.0,False,True,0.0,0,0.0,0,1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0
+Fix_M0A0,baseline_fixed,True,WL06,"Maximum operands (255,255), 20 steps",20,20,55316,55316,0,0,0.0,False,True,0.0,0,0.0,0,1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0
+Fix_M0A0,baseline_fixed,True,WL07,"Alternating small and large operands, 16 steps",16,16,6896,6896,0,0,0.0,False,True,0.0,0,0.0,0,1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0
+Fix_M0A0,baseline_fixed,True,WL08,"One large (255) and one small (2..8) operand, 20 steps",20,20,21930,21930,0,0,0.0,False,True,0.0,0,0.0,0,1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0
+Fix_M0A0,baseline_fixed,True,WL09,"Operands around 127/128, 16 steps",16,16,61960,61960,0,0,0.0,False,True,0.0,0,0.0,0,1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0
+Fix_M0A0,baseline_fixed,True,WL10,"Random mixed operands, 50 steps",50,50,14863,14863,0,0,0.0,False,True,0.0,0,0.0,0,1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0
+Fix_M0A0,baseline_fixed,True,WL11,"Medium operands, initial_acc=32000 (near midpoint)",20,20,23977,23977,0,0,0.0,False,True,0.0,0,0.0,0,1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0
+Fix_M0A0,baseline_fixed,True,WL12,"Small operands, initial_acc=49000 (near 49152)",30,30,52655,52655,0,0,0.0,False,True,0.0,0,0.0,0,1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0
+Fix_M0A0,baseline_fixed,True,WL13,"Large operands, initial_acc=64000 (near 65535, wraparound risk)",10,10,23106,23106,0,0,0.0,False,True,0.0,0,0.0,0,1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0
+Fix_M0A0,baseline_fixed,True,WL14,Operands that cause accumulator to wrap around 65535,10,10,60837,60837,0,0,0.0,False,True,0.0,0,0.0,0,1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0
+Fix_M0A0,baseline_fixed,True,WL15,"Enable pauses (alternating en=0), 20 steps",20,13,5086,5086,0,0,0.0,False,True,0.0,0,0.0,0,1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0
+Fix_M0A0,baseline_fixed,True,WL16,Reset events mid-sequence (rst at step 9 and 17),24,24,19629,19629,0,0,0.0,False,True,0.0,0,0.0,0,1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0
+Fix_M0A0,baseline_fixed,True,WL17,"Long accumulation, 100 random steps",100,100,31163,31163,0,0,0.0,False,True,0.0,0,0.0,0,1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0
+Fix_M0A0,baseline_fixed,True,WL18,"Error accumulation: A,B always odd (maximize truncation effect)",40,40,33760,33760,0,0,0.0,False,True,0.0,0,0.0,0,1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0
+Fix_M0A0,baseline_fixed,True,WL19,"Acc near zero (initial=5), small operands [1,3]",8,8,35,35,0,0,0.0,False,True,0.0,0,0.0,0,1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0
+Fix_M0A0,baseline_fixed,True,WL20,One or both operands = 0 (zero-product steps),10,10,489,489,0,0,0.0,False,True,0.0,0,0.0,0,1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0
+Fix_M0A0,baseline_fixed,True,WL21,"Single step: A=7, B=7 (worst-case L3 mult error)",1,1,49,49,0,0,0.0,False,True,0.0,0,0.0,0,1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0
+Fix_M0A0,baseline_fixed,True,WL22,"Products designed to expose adder XOR-carry suppression, 16 steps",16,16,964,964,0,0,0.0,False,True,0.0,0,0.0,0,1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0
+Fix_M0A0,baseline_fixed,True,WL23,"Monotonic small increments, 60 steps [1,8]",60,60,1111,1111,0,0,0.0,False,True,0.0,0,0.0,0,1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0
+Fix_M0A0,baseline_fixed,True,WL24,"Held-out: uniform random full-range, 80 steps",80,80,21671,21671,0,0,0.0,False,True,0.0,0,0.0,0,1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0
+Fix_M0A0,baseline_fixed,True,WL25,"Adversarial adder: A=255 with B in {1,3,5,7,...}, 20 steps",20,20,36464,36464,0,0,0.0,False,True,0.0,0,0.0,0,1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0
+Fix_M1A1,baseline_fixed,False,WL01,All-zero operands (20 steps),20,20,0,0,0,0,undefined,True,True,0.0,0,0.0,0,0.0,1.0,0.0,0.0,0.0,1.0,0.0,0.0
+Fix_M1A1,baseline_fixed,False,WL02,"Very small operands [1,5], 30 steps",30,30,259,226,33,33,12.741313,False,False,14.5667,33,17.5014,0,0.0,1.0,0.0,0.0,0.0,1.0,0.0,0.0
+Fix_M1A1,baseline_fixed,False,WL03,"Boundary operands for L1 truncation (A,B in {1,2,3,4})",16,16,100,84,16,16,16.0,False,False,10.5,16,11.8004,0,0.0,1.0,0.0,0.0,0.0,1.0,0.0,0.0
+Fix_M1A1,baseline_fixed,False,WL04,"Medium operands [32,96], 40 steps",40,40,30434,30384,50,50,0.16429,False,True,24.75,50,28.0321,0,0.0,1.0,0.0,0.0,0.0,1.0,0.0,0.0
+Fix_M1A1,baseline_fixed,False,WL05,"Large operands [192,255], 30 steps",30,30,37595,37566,29,29,0.077138,False,True,14.4,29,17.1988,0,0.0,1.0,0.0,0.0,0.0,1.0,0.0,0.0
+Fix_M1A1,baseline_fixed,False,WL06,"Maximum operands (255,255), 20 steps",20,20,55316,55296,20,20,0.036156,False,True,10.5,20,11.9791,0,0.0,1.0,0.0,0.0,0.0,1.0,0.0,0.0
+Fix_M1A1,baseline_fixed,False,WL07,"Alternating small and large operands, 16 steps",16,16,6896,6880,16,16,0.232019,False,True,8.6875,16,9.8584,0,0.0,1.0,0.0,0.0,0.0,1.0,0.0,0.0
+Fix_M1A1,baseline_fixed,False,WL08,"One large (255) and one small (2..8) operand, 20 steps",20,20,21930,21896,34,34,0.155039,False,True,13.4,34,16.5045,0,0.0,1.0,0.0,0.0,0.0,1.0,0.0,0.0
+Fix_M1A1,baseline_fixed,False,WL09,"Operands around 127/128, 16 steps",16,16,61960,61944,16,16,0.025823,False,True,6.6875,16,9.1139,0,0.0,1.0,0.0,0.0,0.0,1.0,0.0,0.0
+Fix_M1A1,baseline_fixed,False,WL10,"Random mixed operands, 50 steps",50,50,14863,14810,53,53,0.35659,False,True,27.04,53,30.5011,0,0.0,1.0,0.0,0.0,0.0,1.0,0.0,0.0
+Fix_M1A1,baseline_fixed,False,WL11,"Medium operands, initial_acc=32000 (near midpoint)",20,20,23977,23956,21,21,0.087584,False,True,8.5,21,9.98,0,0.0,1.0,0.0,0.0,0.0,1.0,0.0,0.0
+Fix_M1A1,baseline_fixed,False,WL12,"Small operands, initial_acc=49000 (near 49152)",30,30,52655,52628,27,27,0.051277,False,True,12.1,27,15.3699,0,0.0,1.0,0.0,0.0,0.0,1.0,0.0,0.0
+Fix_M1A1,baseline_fixed,False,WL13,"Large operands, initial_acc=64000 (near 65535, wraparound risk)",10,10,23106,23096,10,10,0.043279,False,True,4.1,10,4.6797,0,0.0,1.0,0.0,0.0,0.0,1.0,0.0,0.0
+Fix_M1A1,baseline_fixed,False,WL14,Operands that cause accumulator to wrap around 65535,10,10,60837,60832,5,5,0.008219,False,True,1.5,5,2.3452,0,0.0,1.0,0.0,0.0,0.0,1.0,0.0,0.0
+Fix_M1A1,baseline_fixed,False,WL15,"Enable pauses (alternating en=0), 20 steps",20,13,5086,5072,14,14,0.275265,False,True,6.35,14,7.5531,0,0.0,1.0,0.0,0.0,0.0,1.0,0.0,0.0
+Fix_M1A1,baseline_fixed,False,WL16,Reset events mid-sequence (rst at step 9 and 17),24,24,19629,19624,5,5,0.025473,False,True,2.375,10,3.7472,0,0.0,1.0,0.0,0.0,0.0,1.0,0.0,0.0
+Fix_M1A1,baseline_fixed,False,WL17,"Long accumulation, 100 random steps",100,100,31163,31050,113,113,0.36261,False,True,51.15,113,59.7614,0,0.0,1.0,0.0,0.0,0.0,1.0,0.0,0.0
+Fix_M1A1,baseline_fixed,False,WL18,"Error accumulation: A,B always odd (maximize truncation effect)",40,40,33760,33680,80,80,0.236967,False,True,39.8,80,46.8583,0,0.0,1.0,0.0,0.0,0.0,1.0,0.0,0.0
+Fix_M1A1,baseline_fixed,False,WL19,"Acc near zero (initial=5), small operands [1,3]",8,8,35,27,8,8,22.857143,False,False,4.75,8,5.6125,0,0.0,1.0,0.0,0.0,0.0,1.0,0.0,0.0
+Fix_M1A1,baseline_fixed,False,WL20,One or both operands = 0 (zero-product steps),10,10,489,488,1,1,0.204499,False,True,0.2,1,0.4472,0,0.0,1.0,0.0,0.0,0.0,1.0,0.0,0.0
+Fix_M1A1,baseline_fixed,False,WL21,"Single step: A=7, B=7 (worst-case L3 mult error)",1,1,49,48,1,1,2.040816,False,False,1.0,1,1.0,0,0.0,1.0,0.0,0.0,0.0,1.0,0.0,0.0
+Fix_M1A1,baseline_fixed,False,WL22,"Products designed to expose adder XOR-carry suppression, 16 steps",16,16,964,920,44,44,4.564315,False,False,23.0,44,26.2679,0,0.0,1.0,0.0,0.0,0.0,1.0,0.0,0.0
+Fix_M1A1,baseline_fixed,False,WL23,"Monotonic small increments, 60 steps [1,8]",60,60,1111,1052,59,59,5.310531,False,False,27.0,59,31.1571,0,0.0,1.0,0.0,0.0,0.0,1.0,0.0,0.0
+Fix_M1A1,baseline_fixed,False,WL24,"Held-out: uniform random full-range, 80 steps",80,80,21671,21612,59,59,0.272253,False,True,28.425,59,33.7005,0,0.0,1.0,0.0,0.0,0.0,1.0,0.0,0.0
+Fix_M1A1,baseline_fixed,False,WL25,"Adversarial adder: A=255 with B in {1,3,5,7,...}, 20 steps",20,20,36464,36424,40,40,0.109697,False,True,20.5,40,23.6114,0,0.0,1.0,0.0,0.0,0.0,1.0,0.0,0.0
+Fix_M2A2,baseline_fixed,False,WL01,All-zero operands (20 steps),20,20,0,0,0,0,undefined,True,True,0.0,0,0.0,0,0.0,0.0,1.0,0.0,0.0,0.0,1.0,0.0
+Fix_M2A2,baseline_fixed,False,WL02,"Very small operands [1,5], 30 steps",30,30,259,96,163,163,62.934363,False,False,71.3667,163,84.7555,0,0.0,0.0,1.0,0.0,0.0,0.0,1.0,0.0
+Fix_M2A2,baseline_fixed,False,WL03,"Boundary operands for L1 truncation (A,B in {1,2,3,4})",16,16,100,16,84,84,84.0,False,False,32.0,84,42.3232,0,0.0,0.0,1.0,0.0,0.0,0.0,1.0,0.0
+Fix_M2A2,baseline_fixed,False,WL04,"Medium operands [32,96], 40 steps",40,40,30434,30168,266,266,0.874022,False,True,128.9,266,149.1811,0,0.0,0.0,1.0,0.0,0.0,0.0,1.0,0.0
+Fix_M2A2,baseline_fixed,False,WL05,"Large operands [192,255], 30 steps",30,30,37595,37376,219,219,0.582524,False,True,101.8,219,119.1394,0,0.0,0.0,1.0,0.0,0.0,0.0,1.0,0.0
+Fix_M2A2,baseline_fixed,False,WL06,"Maximum operands (255,255), 20 steps",20,20,55316,54976,340,340,0.61465,False,True,172.5,340,198.7549,0,0.0,0.0,1.0,0.0,0.0,0.0,1.0,0.0
+Fix_M2A2,baseline_fixed,False,WL07,"Alternating small and large operands, 16 steps",16,16,6896,6792,104,104,1.508121,False,False,47.4375,104,58.1781,0,0.0,0.0,1.0,0.0,0.0,0.0,1.0,0.0
+Fix_M2A2,baseline_fixed,False,WL08,"One large (255) and one small (2..8) operand, 20 steps",20,20,21930,21696,234,234,1.067031,False,False,120.0,234,138.2592,0,0.0,0.0,1.0,0.0,0.0,0.0,1.0,0.0
+Fix_M2A2,baseline_fixed,False,WL09,"Operands around 127/128, 16 steps",16,16,61960,61856,104,104,0.16785,False,True,44.6875,104,54.9392,0,0.0,0.0,1.0,0.0,0.0,0.0,1.0,0.0
+Fix_M2A2,baseline_fixed,False,WL10,"Random mixed operands, 50 steps",50,50,14863,14512,351,351,2.361569,False,False,175.68,351,199.6397,0,0.0,0.0,1.0,0.0,0.0,0.0,1.0,0.0
+Fix_M2A2,baseline_fixed,False,WL11,"Medium operands, initial_acc=32000 (near midpoint)",20,20,23977,23856,121,121,0.50465,False,True,50.2,121,61.265,0,0.0,0.0,1.0,0.0,0.0,0.0,1.0,0.0
+Fix_M2A2,baseline_fixed,False,WL12,"Small operands, initial_acc=49000 (near 49152)",30,30,52655,52460,195,195,0.370335,False,True,106.5,195,123.7852,0,0.0,0.0,1.0,0.0,0.0,0.0,1.0,0.0
+Fix_M2A2,baseline_fixed,False,WL13,"Large operands, initial_acc=64000 (near 65535, wraparound risk)",10,10,23106,23020,86,86,0.372198,False,True,45.3,86,52.3746,0,0.0,0.0,1.0,0.0,0.0,0.0,1.0,0.0
+Fix_M2A2,baseline_fixed,False,WL14,Operands that cause accumulator to wrap around 65535,10,10,60837,60764,73,73,0.119993,False,True,21.9,73,35.5739,0,0.0,0.0,1.0,0.0,0.0,0.0,1.0,0.0
+Fix_M2A2,baseline_fixed,False,WL15,"Enable pauses (alternating en=0), 20 steps",20,13,5086,5016,70,70,1.376327,False,False,31.15,70,40.6356,0,0.0,0.0,1.0,0.0,0.0,0.0,1.0,0.0
+Fix_M2A2,baseline_fixed,False,WL16,Reset events mid-sequence (rst at step 9 and 17),24,24,19629,19572,57,57,0.290387,False,True,22.9583,57,28.3056,0,0.0,0.0,1.0,0.0,0.0,0.0,1.0,0.0
+Fix_M2A2,baseline_fixed,False,WL17,"Long accumulation, 100 random steps",100,100,31163,30472,691,691,2.217373,False,False,1014.19,65382,6550.7511,0,0.0,0.0,1.0,0.0,0.0,0.0,1.0,0.0
+Fix_M2A2,baseline_fixed,False,WL18,"Error accumulation: A,B always odd (maximize truncation effect)",40,40,33760,33452,308,308,0.912322,False,True,145.65,308,172.3891,0,0.0,0.0,1.0,0.0,0.0,0.0,1.0,0.0
+Fix_M2A2,baseline_fixed,False,WL19,"Acc near zero (initial=5), small operands [1,3]",8,8,35,5,30,30,85.714286,False,False,16.75,30,20.0749,0,0.0,0.0,1.0,0.0,0.0,0.0,1.0,0.0
+Fix_M2A2,baseline_fixed,False,WL20,One or both operands = 0 (zero-product steps),10,10,489,468,21,21,4.294479,False,False,4.2,21,9.3915,0,0.0,0.0,1.0,0.0,0.0,0.0,1.0,0.0
+Fix_M2A2,baseline_fixed,False,WL21,"Single step: A=7, B=7 (worst-case L3 mult error)",1,1,49,44,5,5,10.204082,False,False,5.0,5,5.0,0,0.0,0.0,1.0,0.0,0.0,0.0,1.0,0.0
+Fix_M2A2,baseline_fixed,False,WL22,"Products designed to expose adder XOR-carry suppression, 16 steps",16,16,964,800,164,164,17.012448,False,False,80.875,164,93.6283,0,0.0,0.0,1.0,0.0,0.0,0.0,1.0,0.0
+Fix_M2A2,baseline_fixed,False,WL23,"Monotonic small increments, 60 steps [1,8]",60,60,1111,704,407,407,36.633663,False,False,198.7,407,230.7634,0,0.0,0.0,1.0,0.0,0.0,0.0,1.0,0.0
+Fix_M2A2,baseline_fixed,False,WL24,"Held-out: uniform random full-range, 80 steps",80,80,21671,21140,531,531,2.450279,False,False,251.05,531,293.2717,0,0.0,0.0,1.0,0.0,0.0,0.0,1.0,0.0
+Fix_M2A2,baseline_fixed,False,WL25,"Adversarial adder: A=255 with B in {1,3,5,7,...}, 20 steps",20,20,36464,36264,200,200,0.548486,False,True,100.3,200,116.0366,0,0.0,0.0,1.0,0.0,0.0,0.0,1.0,0.0
+Fix_M3A3,baseline_fixed,False,WL01,All-zero operands (20 steps),20,20,0,0,0,0,undefined,True,True,0.0,0,0.0,0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,1.0
+Fix_M3A3,baseline_fixed,False,WL02,"Very small operands [1,5], 30 steps",30,30,259,0,259,259,100.0,False,False,107.7667,259,127.9355,0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,1.0
+Fix_M3A3,baseline_fixed,False,WL03,"Boundary operands for L1 truncation (A,B in {1,2,3,4})",16,16,100,16,84,84,84.0,False,False,34.0,84,43.735,0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,1.0
+Fix_M3A3,baseline_fixed,False,WL04,"Medium operands [32,96], 40 steps",40,40,30434,26256,4178,4178,13.728067,False,False,3586.35,61903,10074.8503,0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,1.0
+Fix_M3A3,baseline_fixed,False,WL05,"Large operands [192,255], 30 steps",30,30,37595,34416,3179,3179,8.455912,False,False,5541.0667,64342,16585.1466,0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,1.0
+Fix_M3A3,baseline_fixed,False,WL06,"Maximum operands (255,255), 20 steps",20,20,55316,50176,5140,5140,9.292067,False,False,2578.5,5140,2981.6156,0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,1.0
+Fix_M3A3,baseline_fixed,False,WL07,"Alternating small and large operands, 16 steps",16,16,6896,5592,1304,1304,18.909513,False,False,647.4375,1304,794.6699,0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,1.0
+Fix_M3A3,baseline_fixed,False,WL08,"One large (255) and one small (2..8) operand, 20 steps",20,20,21930,16904,5026,5026,22.918377,False,False,2519.2,5026,2914.1716,0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,1.0
+Fix_M3A3,baseline_fixed,False,WL09,"Operands around 127/128, 16 steps",16,16,61960,60112,1848,1848,2.982569,False,False,887.4375,1848,1072.3688,0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,1.0
+Fix_M3A3,baseline_fixed,False,WL10,"Random mixed operands, 50 steps",50,50,14863,7912,6951,6951,46.76714,False,False,7309.56,65153,16170.2862,0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,1.0
+Fix_M3A3,baseline_fixed,False,WL11,"Medium operands, initial_acc=32000 (near midpoint)",20,20,23977,21992,1985,1985,8.278767,False,False,4067.9,64309,14420.9724,0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,1.0
+Fix_M3A3,baseline_fixed,False,WL12,"Small operands, initial_acc=49000 (near 49152)",30,30,52655,50656,1999,1999,3.796411,False,False,1260.1,1999,1384.1686,0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,1.0
+Fix_M3A3,baseline_fixed,False,WL13,"Large operands, initial_acc=64000 (near 65535, wraparound risk)",10,10,23106,22216,890,890,3.851813,False,False,464.1,890,549.436,0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,1.0
+Fix_M3A3,baseline_fixed,False,WL14,Operands that cause accumulator to wrap around 65535,10,10,60837,59344,1493,1493,2.454099,False,False,639.9,1493,807.1653,0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,1.0
+Fix_M3A3,baseline_fixed,False,WL15,"Enable pauses (alternating en=0), 20 steps",20,13,5086,3280,1806,1806,35.509241,False,False,4048.75,63756,14292.6255,0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,1.0
+Fix_M3A3,baseline_fixed,False,WL16,Reset events mid-sequence (rst at step 9 and 17),24,24,19629,18248,1381,1381,7.035509,False,False,593.4583,1381,704.9467,0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,1.0
+Fix_M3A3,baseline_fixed,False,WL17,"Long accumulation, 100 random steps",100,100,31163,18496,12667,12667,40.647563,False,False,11132.69,63714,19499.1239,0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,1.0
+Fix_M3A3,baseline_fixed,False,WL18,"Error accumulation: A,B always odd (maximize truncation effect)",40,40,33760,29064,4696,4696,13.909953,False,False,3864.25,61518,10100.1001,0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,1.0
+Fix_M3A3,baseline_fixed,False,WL19,"Acc near zero (initial=5), small operands [1,3]",8,8,35,5,30,30,85.714286,False,False,14.75,30,18.0831,0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,1.0
+Fix_M3A3,baseline_fixed,False,WL20,One or both operands = 0 (zero-product steps),10,10,489,24,465,465,95.092025,False,False,93.0,465,207.9543,0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,1.0
+Fix_M3A3,baseline_fixed,False,WL21,"Single step: A=7, B=7 (worst-case L3 mult error)",1,1,49,32,17,17,34.693878,False,False,17.0,17,17.0,0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,1.0
+Fix_M3A3,baseline_fixed,False,WL22,"Products designed to expose adder XOR-carry suppression, 16 steps",16,16,964,128,836,836,86.721992,False,False,371.125,836,458.6625,0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,1.0
+Fix_M3A3,baseline_fixed,False,WL23,"Monotonic small increments, 60 steps [1,8]",60,60,1111,56,1055,1055,94.959496,False,False,527.3667,1055,614.358,0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,1.0
+Fix_M3A3,baseline_fixed,False,WL24,"Held-out: uniform random full-range, 80 steps",80,80,21671,10848,10823,10823,49.942319,False,False,5798.2,54978,8639.9933,0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,1.0
+Fix_M3A3,baseline_fixed,False,WL25,"Adversarial adder: A=255 with B in {1,3,5,7,...}, 20 steps",20,20,36464,31760,4704,4704,12.900395,False,False,2425.7,4704,2787.8365,0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,1.0
+M2_DualAdaptive,2,False,WL01,All-zero operands (20 steps),20,20,0,0,0,0,undefined,True,True,0.0,0,0.0,0,1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0
+M2_DualAdaptive,2,False,WL02,"Very small operands [1,5], 30 steps",30,30,259,259,0,0,0.0,False,True,0.0,0,0.0,0,1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0
+M2_DualAdaptive,2,False,WL03,"Boundary operands for L1 truncation (A,B in {1,2,3,4})",16,16,100,100,0,0,0.0,False,True,0.0,0,0.0,0,1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0
+M2_DualAdaptive,2,False,WL04,"Medium operands [32,96], 40 steps",40,40,30434,30236,198,198,0.650588,False,True,99.3,198,114.1446,8,0.0,0.0,0.1,0.9,0.0,1.0,0.0,0.0
+M2_DualAdaptive,2,False,WL05,"Large operands [192,255], 30 steps",30,30,37595,37472,123,123,0.327171,False,True,63.9333,123,72.5631,0,0.0,0.0,0.0,1.0,0.0,1.0,0.0,0.0
+M2_DualAdaptive,2,False,WL06,"Maximum operands (255,255), 20 steps",20,20,55316,54976,340,340,0.61465,False,True,178.5,340,203.6455,0,0.0,0.0,0.0,1.0,0.0,1.0,0.0,0.0
+M2_DualAdaptive,2,False,WL07,"Alternating small and large operands, 16 steps",16,16,6896,6861,35,35,0.507541,False,True,15.6875,35,19.0016,15,0.5,0.0,0.0,0.5,0.0625,0.9375,0.0,0.0
+M2_DualAdaptive,2,False,WL08,"One large (255) and one small (2..8) operand, 20 steps",20,20,21930,21896,34,34,0.155039,False,True,12.8,34,16.1121,1,1.0,0.0,0.0,0.0,0.05,0.95,0.0,0.0
+M2_DualAdaptive,2,False,WL09,"Operands around 127/128, 16 steps",16,16,61960,61888,72,72,0.116204,False,True,39.4375,72,45.594,0,0.0,0.0,0.0,1.0,0.0,1.0,0.0,0.0
+M2_DualAdaptive,2,False,WL10,"Random mixed operands, 50 steps",50,50,14863,14661,202,202,1.35908,False,False,99.9,202,112.0394,12,0.06,0.02,0.04,0.88,0.0,1.0,0.0,0.0
+M2_DualAdaptive,2,False,WL11,"Medium operands, initial_acc=32000 (near midpoint)",20,20,23977,23924,53,53,0.221045,False,True,28.0,53,31.0451,7,0.0,0.0,0.45,0.55,0.0,1.0,0.0,0.0
+M2_DualAdaptive,2,False,WL12,"Small operands, initial_acc=49000 (near 49152)",30,30,52655,52629,26,26,0.049378,False,True,11.6,26,15.02,4,0.9333,0.0667,0.0,0.0,0.0,1.0,0.0,0.0
+M2_DualAdaptive,2,False,WL13,"Large operands, initial_acc=64000 (near 65535, wraparound risk)",10,10,23106,23048,58,58,0.251017,False,True,32.1,58,35.3935,0,0.0,0.0,0.0,1.0,0.0,1.0,0.0,0.0
+M2_DualAdaptive,2,False,WL14,Operands that cause accumulator to wrap around 65535,10,10,60837,60752,85,85,0.139718,False,True,25.5,85,39.8685,0,0.0,0.0,0.0,1.0,0.0,1.0,0.0,0.0
+M2_DualAdaptive,2,False,WL15,"Enable pauses (alternating en=0), 20 steps",20,13,5086,5038,48,48,0.943767,False,True,21.45,48,25.0928,4,0.1,0.0,0.05,0.85,0.05,0.95,0.0,0.0
+M2_DualAdaptive,2,False,WL16,Reset events mid-sequence (rst at step 9 and 17),24,24,19629,19592,37,37,0.188497,False,True,21.4583,54,26.4173,0,0.0,0.0,0.0,1.0,0.0,1.0,0.0,0.0
+M2_DualAdaptive,2,False,WL17,"Long accumulation, 100 random steps",100,100,31163,30768,395,395,1.267529,False,False,848.08,65471,6550.8903,34,0.15,0.0,0.06,0.79,0.0,1.0,0.0,0.0
+M2_DualAdaptive,2,False,WL18,"Error accumulation: A,B always odd (maximize truncation effect)",40,40,33760,33435,325,325,0.962678,False,True,163.7,325,187.6289,7,0.025,0.0,0.075,0.9,0.0,1.0,0.0,0.0
+M2_DualAdaptive,2,False,WL19,"Acc near zero (initial=5), small operands [1,3]",8,8,35,35,0,0,0.0,False,True,0.0,0,0.0,0,1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0
+M2_DualAdaptive,2,False,WL20,One or both operands = 0 (zero-product steps),10,10,489,472,17,17,3.476483,False,False,3.4,17,7.6026,2,0.9,0.0,0.0,0.1,0.1,0.9,0.0,0.0
+M2_DualAdaptive,2,False,WL21,"Single step: A=7, B=7 (worst-case L3 mult error)",1,1,49,49,0,0,0.0,False,True,0.0,0,0.0,0,1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0
+M2_DualAdaptive,2,False,WL22,"Products designed to expose adder XOR-carry suppression, 16 steps",16,16,964,950,14,14,1.452282,False,False,2.875,14,5.4544,1,1.0,0.0,0.0,0.0,0.6875,0.3125,0.0,0.0
+M2_DualAdaptive,2,False,WL23,"Monotonic small increments, 60 steps [1,8]",60,60,1111,1083,28,28,2.520252,False,False,6.1333,28,10.4754,1,1.0,0.0,0.0,0.0,0.5667,0.4333,0.0,0.0
+M2_DualAdaptive,2,False,WL24,"Held-out: uniform random full-range, 80 steps",80,80,21671,21389,282,282,1.301278,False,False,146.225,282,167.8304,25,0.0875,0.0,0.075,0.8375,0.0,1.0,0.0,0.0
+M2_DualAdaptive,2,False,WL25,"Adversarial adder: A=255 with B in {1,3,5,7,...}, 20 steps",20,20,36464,36310,154,154,0.422334,False,True,52.4,154,73.1772,2,0.4,0.0,0.0,0.6,0.1,0.9,0.0,0.0
+M3_Threshold,3,False,WL01,All-zero operands (20 steps),20,20,0,0,0,0,undefined,True,True,0.0,0,0.0,0,1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0
+M3_Threshold,3,False,WL02,"Very small operands [1,5], 30 steps",30,30,259,259,0,0,0.0,False,True,0.0,0,0.0,0,1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0
+M3_Threshold,3,False,WL03,"Boundary operands for L1 truncation (A,B in {1,2,3,4})",16,16,100,100,0,0,0.0,False,True,0.0,0,0.0,0,1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0
+M3_Threshold,3,False,WL04,"Medium operands [32,96], 40 steps",40,40,30434,30336,98,98,0.322008,False,True,47.1,98,55.771,15,0.0,0.0,0.775,0.225,0.025,0.975,0.0,0.0
+M3_Threshold,3,False,WL05,"Large operands [192,255], 30 steps",30,30,37595,37472,123,123,0.327171,False,True,63.9333,123,72.5631,5,0.0,0.0,0.0,1.0,0.1,0.9,0.0,0.0
+M3_Threshold,3,False,WL06,"Maximum operands (255,255), 20 steps",20,20,55316,54976,340,340,0.61465,False,True,178.5,340,203.6455,1,0.0,0.0,0.0,1.0,0.1,0.9,0.0,0.0
+M3_Threshold,3,False,WL07,"Alternating small and large operands, 16 steps",16,16,6896,6861,35,35,0.507541,False,True,15.6875,35,19.0016,15,0.5,0.0,0.0,0.5,0.125,0.875,0.0,0.0
+M3_Threshold,3,False,WL08,"One large (255) and one small (2..8) operand, 20 steps",20,20,21930,21896,34,34,0.155039,False,True,12.8,34,16.1121,1,1.0,0.0,0.0,0.0,0.05,0.95,0.0,0.0
+M3_Threshold,3,False,WL09,"Operands around 127/128, 16 steps",16,16,61960,61888,72,72,0.116204,False,True,39.4375,72,45.594,5,0.0,0.0,0.0,1.0,0.1875,0.8125,0.0,0.0
+M3_Threshold,3,False,WL10,"Random mixed operands, 50 steps",50,50,14863,14681,182,182,1.224517,False,False,87.38,182,98.4667,24,0.06,0.1,0.12,0.72,0.04,0.96,0.0,0.0
+M3_Threshold,3,False,WL11,"Medium operands, initial_acc=32000 (near midpoint)",20,20,23977,23944,33,33,0.137632,False,True,17.1,33,18.8468,11,0.0,0.35,0.55,0.1,0.05,0.95,0.0,0.0
+M3_Threshold,3,False,WL12,"Small operands, initial_acc=49000 (near 49152)",30,30,52655,52629,26,26,0.049378,False,True,11.6,26,15.02,4,0.9333,0.0667,0.0,0.0,0.0,1.0,0.0,0.0
+M3_Threshold,3,False,WL13,"Large operands, initial_acc=64000 (near 65535, wraparound risk)",10,10,23106,23048,58,58,0.251017,False,True,32.1,58,35.3935,0,0.0,0.0,0.0,1.0,0.0,1.0,0.0,0.0
+M3_Threshold,3,False,WL14,Operands that cause accumulator to wrap around 65535,10,10,60837,60752,85,85,0.139718,False,True,25.5,85,39.8685,0,0.0,0.0,0.0,1.0,0.0,1.0,0.0,0.0
+M3_Threshold,3,False,WL15,"Enable pauses (alternating en=0), 20 steps",20,13,5086,5044,42,42,0.825796,False,True,20.85,42,23.9927,12,0.1,0.15,0.15,0.6,0.05,0.95,0.0,0.0
+M3_Threshold,3,False,WL16,Reset events mid-sequence (rst at step 9 and 17),24,24,19629,19596,33,33,0.168119,False,True,19.7917,42,23.8161,13,0.0,0.0,0.25,0.75,0.125,0.875,0.0,0.0
+M3_Threshold,3,False,WL17,"Long accumulation, 100 random steps",100,100,31163,30838,325,325,1.042903,False,False,811.54,65489,6551.4182,63,0.15,0.13,0.17,0.55,0.02,0.98,0.0,0.0
+M3_Threshold,3,False,WL18,"Error accumulation: A,B always odd (maximize truncation effect)",40,40,33760,33499,261,261,0.773104,False,True,123.6,261,144.9448,24,0.025,0.025,0.325,0.625,0.025,0.975,0.0,0.0
+M3_Threshold,3,False,WL19,"Acc near zero (initial=5), small operands [1,3]",8,8,35,35,0,0,0.0,False,True,0.0,0,0.0,0,1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0
+M3_Threshold,3,False,WL20,One or both operands = 0 (zero-product steps),10,10,489,472,17,17,3.476483,False,False,3.4,17,7.6026,2,0.9,0.0,0.0,0.1,0.1,0.9,0.0,0.0
+M3_Threshold,3,False,WL21,"Single step: A=7, B=7 (worst-case L3 mult error)",1,1,49,49,0,0,0.0,False,True,0.0,0,0.0,0,1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0
+M3_Threshold,3,False,WL22,"Products designed to expose adder XOR-carry suppression, 16 steps",16,16,964,950,14,14,1.452282,False,False,2.875,14,5.4544,1,1.0,0.0,0.0,0.0,0.6875,0.3125,0.0,0.0
+M3_Threshold,3,False,WL23,"Monotonic small increments, 60 steps [1,8]",60,60,1111,1083,28,28,2.520252,False,False,6.1333,28,10.4754,1,1.0,0.0,0.0,0.0,0.5667,0.4333,0.0,0.0
+M3_Threshold,3,False,WL24,"Held-out: uniform random full-range, 80 steps",80,80,21671,21473,198,198,0.913663,False,True,100.3,198,115.6129,53,0.0875,0.2125,0.1875,0.5125,0.0125,0.9875,0.0,0.0
+M3_Threshold,3,False,WL25,"Adversarial adder: A=255 with B in {1,3,5,7,...}, 20 steps",20,20,36464,36422,42,42,0.115182,False,True,17.0,42,21.0927,4,0.4,0.4,0.2,0.0,0.15,0.85,0.0,0.0
+M4_ErrorBudget,4,False,WL01,All-zero operands (20 steps),20,20,0,0,0,0,undefined,True,True,0.0,0,0.0,0,1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0
+M4_ErrorBudget,4,False,WL02,"Very small operands [1,5], 30 steps",30,30,259,255,4,4,1.544402,False,False,0.7333,4,1.4832,1,0.5,0.5,0.0,0.0,1.0,0.0,0.0,0.0
+M4_ErrorBudget,4,False,WL03,"Boundary operands for L1 truncation (A,B in {1,2,3,4})",16,16,100,100,0,0,0.0,False,True,0.0,0,0.0,0,1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0
+M4_ErrorBudget,4,False,WL04,"Medium operands [32,96], 40 steps",40,40,30434,30224,210,210,0.690018,False,True,103.2,210,118.783,0,0.0,0.0,0.0,1.0,0.0,1.0,0.0,0.0
+M4_ErrorBudget,4,False,WL05,"Large operands [192,255], 30 steps",30,30,37595,37472,123,123,0.327171,False,True,63.9333,123,72.5631,0,0.0,0.0,0.0,1.0,0.0,1.0,0.0,0.0
+M4_ErrorBudget,4,False,WL06,"Maximum operands (255,255), 20 steps",20,20,55316,54976,340,340,0.61465,False,True,178.5,340,203.6455,0,0.0,0.0,0.0,1.0,0.0,1.0,0.0,0.0
+M4_ErrorBudget,4,False,WL07,"Alternating small and large operands, 16 steps",16,16,6896,6834,62,62,0.899072,False,True,29.4375,62,37.1408,1,0.0625,0.0,0.0,0.9375,0.0625,0.9375,0.0,0.0
+M4_ErrorBudget,4,False,WL08,"One large (255) and one small (2..8) operand, 20 steps",20,20,21930,21737,193,193,0.880073,False,True,92.8,193,110.3349,3,0.05,0.0,0.05,0.9,0.15,0.85,0.0,0.0
+M4_ErrorBudget,4,False,WL09,"Operands around 127/128, 16 steps",16,16,61960,61888,72,72,0.116204,False,True,39.4375,72,45.594,0,0.0,0.0,0.0,1.0,0.0,1.0,0.0,0.0
+M4_ErrorBudget,4,False,WL10,"Random mixed operands, 50 steps",50,50,14863,14636,227,227,1.527283,False,False,119.04,227,130.6966,4,0.0,0.0,0.04,0.96,0.02,0.98,0.0,0.0
+M4_ErrorBudget,4,False,WL11,"Medium operands, initial_acc=32000 (near midpoint)",20,20,23977,23884,93,93,0.387872,False,True,45.8,93,52.9358,2,0.0,0.0,0.05,0.95,0.0,1.0,0.0,0.0
+M4_ErrorBudget,4,False,WL12,"Small operands, initial_acc=49000 (near 49152)",30,30,52655,52528,127,127,0.241193,False,True,70.7667,127,82.2004,0,0.0,0.0,0.0,1.0,0.0,1.0,0.0,0.0
+M4_ErrorBudget,4,False,WL13,"Large operands, initial_acc=64000 (near 65535, wraparound risk)",10,10,23106,23048,58,58,0.251017,False,True,32.1,58,35.3935,0,0.0,0.0,0.0,1.0,0.0,1.0,0.0,0.0
+M4_ErrorBudget,4,False,WL14,Operands that cause accumulator to wrap around 65535,10,10,60837,60752,85,85,0.139718,False,True,25.5,85,39.8685,0,0.0,0.0,0.0,1.0,0.0,1.0,0.0,0.0
+M4_ErrorBudget,4,False,WL15,"Enable pauses (alternating en=0), 20 steps",20,13,5086,5028,58,58,1.140385,False,False,29.95,58,33.5209,1,0.05,0.0,0.0,0.95,0.05,0.95,0.0,0.0
+M4_ErrorBudget,4,False,WL16,Reset events mid-sequence (rst at step 9 and 17),24,24,19629,19592,37,37,0.188497,False,True,21.4583,54,26.4173,0,0.0,0.0,0.0,1.0,0.0,1.0,0.0,0.0
+M4_ErrorBudget,4,False,WL17,"Long accumulation, 100 random steps",100,100,31163,30704,459,459,1.472901,False,False,878.83,65458,6550.9259,0,0.0,0.0,0.0,1.0,0.0,1.0,0.0,0.0
+M4_ErrorBudget,4,False,WL18,"Error accumulation: A,B always odd (maximize truncation effect)",40,40,33760,33416,344,344,1.018957,False,False,170.35,344,196.2641,1,0.0,0.0,0.025,0.975,0.0,1.0,0.0,0.0
+M4_ErrorBudget,4,False,WL19,"Acc near zero (initial=5), small operands [1,3]",8,8,35,35,0,0,0.0,False,True,0.0,0,0.0,0,1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0
+M4_ErrorBudget,4,False,WL20,One or both operands = 0 (zero-product steps),10,10,489,472,17,17,3.476483,False,False,3.4,17,7.6026,2,0.0,0.1,0.8,0.1,0.9,0.1,0.0,0.0
+M4_ErrorBudget,4,False,WL21,"Single step: A=7, B=7 (worst-case L3 mult error)",1,1,49,49,0,0,0.0,False,True,0.0,0,0.0,0,1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0
+M4_ErrorBudget,4,False,WL22,"Products designed to expose adder XOR-carry suppression, 16 steps",16,16,964,937,27,27,2.80083,False,False,9.8125,27,13.3954,2,0.1875,0.3125,0.5,0.0,1.0,0.0,0.0,0.0
+M4_ErrorBudget,4,False,WL23,"Monotonic small increments, 60 steps [1,8]",60,60,1111,1060,51,51,4.590459,False,False,14.0833,51,20.6111,2,0.0833,0.3833,0.5333,0.0,1.0,0.0,0.0,0.0
+M4_ErrorBudget,4,False,WL24,"Held-out: uniform random full-range, 80 steps",80,80,21671,21360,311,311,1.435098,False,False,161.55,311,185.6329,0,0.0,0.0,0.0,1.0,0.0,1.0,0.0,0.0
+M4_ErrorBudget,4,False,WL25,"Adversarial adder: A=255 with B in {1,3,5,7,...}, 20 steps",20,20,36464,36251,213,213,0.584138,False,True,96.9,213,118.0343,4,0.05,0.05,0.05,0.85,0.2,0.8,0.0,0.0
+M5_AdaptMult_Mag,5,True,WL01,All-zero operands (20 steps),20,20,0,0,0,0,undefined,True,True,0.0,0,0.0,0,1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0
+M5_AdaptMult_Mag,5,True,WL02,"Very small operands [1,5], 30 steps",30,30,259,259,0,0,0.0,False,True,0.0,0,0.0,0,1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0
+M5_AdaptMult_Mag,5,True,WL03,"Boundary operands for L1 truncation (A,B in {1,2,3,4})",16,16,100,100,0,0,0.0,False,True,0.0,0,0.0,0,1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0
+M5_AdaptMult_Mag,5,True,WL04,"Medium operands [32,96], 40 steps",40,40,30434,30236,198,198,0.650588,False,True,99.3,198,114.1446,8,0.0,0.0,0.1,0.9,1.0,0.0,0.0,0.0
+M5_AdaptMult_Mag,5,True,WL05,"Large operands [192,255], 30 steps",30,30,37595,37472,123,123,0.327171,False,True,63.9333,123,72.5631,0,0.0,0.0,0.0,1.0,1.0,0.0,0.0,0.0
+M5_AdaptMult_Mag,5,True,WL06,"Maximum operands (255,255), 20 steps",20,20,55316,54976,340,340,0.61465,False,True,178.5,340,203.6455,0,0.0,0.0,0.0,1.0,1.0,0.0,0.0,0.0
+M5_AdaptMult_Mag,5,True,WL07,"Alternating small and large operands, 16 steps",16,16,6896,6869,27,27,0.391531,False,True,11.6875,27,14.9353,15,0.5,0.0,0.0,0.5,1.0,0.0,0.0,0.0
+M5_AdaptMult_Mag,5,True,WL08,"One large (255) and one small (2..8) operand, 20 steps",20,20,21930,21930,0,0,0.0,False,True,0.0,0,0.0,0,1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0
+M5_AdaptMult_Mag,5,True,WL09,"Operands around 127/128, 16 steps",16,16,61960,61888,72,72,0.116204,False,True,39.4375,72,45.594,0,0.0,0.0,0.0,1.0,1.0,0.0,0.0,0.0
+M5_AdaptMult_Mag,5,True,WL10,"Random mixed operands, 50 steps",50,50,14863,14661,202,202,1.35908,False,False,99.9,202,112.0394,12,0.06,0.02,0.04,0.88,1.0,0.0,0.0,0.0
+M5_AdaptMult_Mag,5,True,WL11,"Medium operands, initial_acc=32000 (near midpoint)",20,20,23977,23924,53,53,0.221045,False,True,28.0,53,31.0451,7,0.0,0.0,0.45,0.55,1.0,0.0,0.0,0.0
+M5_AdaptMult_Mag,5,True,WL12,"Small operands, initial_acc=49000 (near 49152)",30,30,52655,52655,0,0,0.0,False,True,0.0,0,0.0,4,0.9333,0.0667,0.0,0.0,1.0,0.0,0.0,0.0
+M5_AdaptMult_Mag,5,True,WL13,"Large operands, initial_acc=64000 (near 65535, wraparound risk)",10,10,23106,23048,58,58,0.251017,False,True,32.1,58,35.3935,0,0.0,0.0,0.0,1.0,1.0,0.0,0.0,0.0
+M5_AdaptMult_Mag,5,True,WL14,Operands that cause accumulator to wrap around 65535,10,10,60837,60752,85,85,0.139718,False,True,25.5,85,39.8685,0,0.0,0.0,0.0,1.0,1.0,0.0,0.0,0.0
+M5_AdaptMult_Mag,5,True,WL15,"Enable pauses (alternating en=0), 20 steps",20,13,5086,5038,48,48,0.943767,False,True,21.45,48,25.0928,4,0.1,0.0,0.05,0.85,1.0,0.0,0.0,0.0
+M5_AdaptMult_Mag,5,True,WL16,Reset events mid-sequence (rst at step 9 and 17),24,24,19629,19592,37,37,0.188497,False,True,21.4583,54,26.4173,0,0.0,0.0,0.0,1.0,1.0,0.0,0.0,0.0
+M5_AdaptMult_Mag,5,True,WL17,"Long accumulation, 100 random steps",100,100,31163,30788,375,375,1.20335,False,False,842.24,65471,6550.63,34,0.15,0.0,0.06,0.79,1.0,0.0,0.0,0.0
+M5_AdaptMult_Mag,5,True,WL18,"Error accumulation: A,B always odd (maximize truncation effect)",40,40,33760,33435,325,325,0.962678,False,True,163.7,325,187.6289,7,0.025,0.0,0.075,0.9,1.0,0.0,0.0,0.0
+M5_AdaptMult_Mag,5,True,WL19,"Acc near zero (initial=5), small operands [1,3]",8,8,35,35,0,0,0.0,False,True,0.0,0,0.0,0,1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0
+M5_AdaptMult_Mag,5,True,WL20,One or both operands = 0 (zero-product steps),10,10,489,472,17,17,3.476483,False,False,3.4,17,7.6026,2,0.9,0.0,0.0,0.1,1.0,0.0,0.0,0.0
+M5_AdaptMult_Mag,5,True,WL21,"Single step: A=7, B=7 (worst-case L3 mult error)",1,1,49,49,0,0,0.0,False,True,0.0,0,0.0,0,1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0
+M5_AdaptMult_Mag,5,True,WL22,"Products designed to expose adder XOR-carry suppression, 16 steps",16,16,964,964,0,0,0.0,False,True,0.0,0,0.0,0,1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0
+M5_AdaptMult_Mag,5,True,WL23,"Monotonic small increments, 60 steps [1,8]",60,60,1111,1111,0,0,0.0,False,True,0.0,0,0.0,0,1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0
+M5_AdaptMult_Mag,5,True,WL24,"Held-out: uniform random full-range, 80 steps",80,80,21671,21389,282,282,1.301278,False,False,146.225,282,167.8304,25,0.0875,0.0,0.075,0.8375,1.0,0.0,0.0,0.0
+M5_AdaptMult_Mag,5,True,WL25,"Adversarial adder: A=255 with B in {1,3,5,7,...}, 20 steps",20,20,36464,36320,144,144,0.39491,False,True,44.7,144,66.2382,1,0.4,0.0,0.0,0.6,1.0,0.0,0.0,0.0
+M5_AdaptMult_MSB,5,True,WL01,All-zero operands (20 steps),20,20,0,0,0,0,undefined,True,True,0.0,0,0.0,0,1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0
+M5_AdaptMult_MSB,5,True,WL02,"Very small operands [1,5], 30 steps",30,30,259,259,0,0,0.0,False,True,0.0,0,0.0,0,1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0
+M5_AdaptMult_MSB,5,True,WL03,"Boundary operands for L1 truncation (A,B in {1,2,3,4})",16,16,100,100,0,0,0.0,False,True,0.0,0,0.0,0,1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0
+M5_AdaptMult_MSB,5,True,WL04,"Medium operands [32,96], 40 steps",40,40,30434,30336,98,98,0.322008,False,True,47.1,98,55.771,14,0.0,0.0,0.775,0.225,1.0,0.0,0.0,0.0
+M5_AdaptMult_MSB,5,True,WL05,"Large operands [192,255], 30 steps",30,30,37595,37472,123,123,0.327171,False,True,63.9333,123,72.5631,0,0.0,0.0,0.0,1.0,1.0,0.0,0.0,0.0
+M5_AdaptMult_MSB,5,True,WL06,"Maximum operands (255,255), 20 steps",20,20,55316,54976,340,340,0.61465,False,True,178.5,340,203.6455,0,0.0,0.0,0.0,1.0,1.0,0.0,0.0,0.0
+M5_AdaptMult_MSB,5,True,WL07,"Alternating small and large operands, 16 steps",16,16,6896,6869,27,27,0.391531,False,True,11.6875,27,14.9353,15,0.5,0.0,0.0,0.5,1.0,0.0,0.0,0.0
+M5_AdaptMult_MSB,5,True,WL08,"One large (255) and one small (2..8) operand, 20 steps",20,20,21930,21930,0,0,0.0,False,True,0.0,0,0.0,0,1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0
+M5_AdaptMult_MSB,5,True,WL09,"Operands around 127/128, 16 steps",16,16,61960,61888,72,72,0.116204,False,True,39.4375,72,45.594,0,0.0,0.0,0.0,1.0,1.0,0.0,0.0,0.0
+M5_AdaptMult_MSB,5,True,WL10,"Random mixed operands, 50 steps",50,50,14863,14685,178,178,1.197605,False,False,86.82,178,97.5837,24,0.06,0.1,0.12,0.72,1.0,0.0,0.0,0.0
+M5_AdaptMult_MSB,5,True,WL11,"Medium operands, initial_acc=32000 (near midpoint)",20,20,23977,23952,25,25,0.104267,False,True,15.1,25,16.2604,10,0.0,0.35,0.55,0.1,1.0,0.0,0.0,0.0
+M5_AdaptMult_MSB,5,True,WL12,"Small operands, initial_acc=49000 (near 49152)",30,30,52655,52655,0,0,0.0,False,True,0.0,0,0.0,4,0.9333,0.0667,0.0,0.0,1.0,0.0,0.0,0.0
+M5_AdaptMult_MSB,5,True,WL13,"Large operands, initial_acc=64000 (near 65535, wraparound risk)",10,10,23106,23048,58,58,0.251017,False,True,32.1,58,35.3935,0,0.0,0.0,0.0,1.0,1.0,0.0,0.0,0.0
+M5_AdaptMult_MSB,5,True,WL14,Operands that cause accumulator to wrap around 65535,10,10,60837,60752,85,85,0.139718,False,True,25.5,85,39.8685,0,0.0,0.0,0.0,1.0,1.0,0.0,0.0,0.0
+M5_AdaptMult_MSB,5,True,WL15,"Enable pauses (alternating en=0), 20 steps",20,13,5086,5048,38,38,0.747149,False,True,20.45,38,23.3163,12,0.1,0.15,0.15,0.6,1.0,0.0,0.0,0.0
+M5_AdaptMult_MSB,5,True,WL16,Reset events mid-sequence (rst at step 9 and 17),24,24,19629,19596,33,33,0.168119,False,True,19.7917,42,23.8161,11,0.0,0.0,0.25,0.75,1.0,0.0,0.0,0.0
+M5_AdaptMult_MSB,5,True,WL17,"Long accumulation, 100 random steps",100,100,31163,30866,297,297,0.953053,False,True,800.38,65489,6551.0447,61,0.15,0.13,0.17,0.55,1.0,0.0,0.0,0.0
+M5_AdaptMult_MSB,5,True,WL18,"Error accumulation: A,B always odd (maximize truncation effect)",40,40,33760,33499,261,261,0.773104,False,True,123.6,261,144.9448,24,0.025,0.025,0.325,0.625,1.0,0.0,0.0,0.0
+M5_AdaptMult_MSB,5,True,WL19,"Acc near zero (initial=5), small operands [1,3]",8,8,35,35,0,0,0.0,False,True,0.0,0,0.0,0,1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0
+M5_AdaptMult_MSB,5,True,WL20,One or both operands = 0 (zero-product steps),10,10,489,472,17,17,3.476483,False,False,3.4,17,7.6026,2,0.9,0.0,0.0,0.1,1.0,0.0,0.0,0.0
+M5_AdaptMult_MSB,5,True,WL21,"Single step: A=7, B=7 (worst-case L3 mult error)",1,1,49,49,0,0,0.0,False,True,0.0,0,0.0,0,1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0
+M5_AdaptMult_MSB,5,True,WL22,"Products designed to expose adder XOR-carry suppression, 16 steps",16,16,964,964,0,0,0.0,False,True,0.0,0,0.0,0,1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0
+M5_AdaptMult_MSB,5,True,WL23,"Monotonic small increments, 60 steps [1,8]",60,60,1111,1111,0,0,0.0,False,True,0.0,0,0.0,0,1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0
+M5_AdaptMult_MSB,5,True,WL24,"Held-out: uniform random full-range, 80 steps",80,80,21671,21477,194,194,0.895206,False,True,98.85,194,113.5352,53,0.0875,0.2125,0.1875,0.5125,1.0,0.0,0.0,0.0
+M5_AdaptMult_MSB,5,True,WL25,"Adversarial adder: A=255 with B in {1,3,5,7,...}, 20 steps",20,20,36464,36440,24,24,0.065818,False,True,5.3,24,8.7121,2,0.4,0.4,0.2,0.0,1.0,0.0,0.0,0.0

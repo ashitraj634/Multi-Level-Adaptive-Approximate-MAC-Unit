@@ -1,0 +1,5 @@
+arch_id,method,mae_code_diff,max_code_diff,mae_circ_dist,meets_1pct_nz,total_nz,meets_1pct_rate_pct,pct_both_exact,ml_L0_pct,ml_L3_pct,al_L0_pct,adder_exact
+Exact,baseline_fixed,0.0,0,0.0,24,24,100.0,100.0,100.0,0.0,100.0,True
+M1_L00,1,0.0,0,0.0,24,24,100.0,100.0,100.0,0.0,100.0,True
+Fix_M0A0,baseline_fixed,0.0,0,0.0,24,24,100.0,100.0,100.0,0.0,100.0,True
+Fix_M1A0,baseline_fixed,10.16,40,10.16,18,24,75.0,0.0,0.0,0.0,100.0,True

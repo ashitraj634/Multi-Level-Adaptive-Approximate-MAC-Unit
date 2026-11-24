@@ -1,0 +1,40 @@
+# Simulation waveform databases (Cadence Incisive)
+*.shm/
+*.trn
+*.dsn
+*.bak
+
+# VCD / FSDB waveforms
+*.vcd
+*.fsdb
+*.vpd
+
+# Synopsys DC work directory
+work/
+*.ddc
+*.svf
+*.sdf
+*.spf
+*.saif
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+~$*.docx
+~$*.pptx
+*.swp
+*.swo
+.vscode/
+.idea/
+
+# Temporary
+*.tmp
+*.log
+transcript
+vsim.wlf
