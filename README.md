@@ -199,7 +199,7 @@ Key comparison across the 5 methods (on identical 25 workloads; `rtl_model.py` u
 ## 9. Repository Navigation
 
 ```text
-adaptive-approximate-mac/
+Multi-Level-Adaptive-Approximate-MAC-Unit/
 ├── rtl/
 │   ├── arithmetic/        ← Multipliers, approx adder, exact MAC hierarchy
 │   ├── controller/        ← MSB adaptive controller (synthesized & PE variants)
